@@ -219,8 +219,11 @@ main{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
 .tile{position:relative;aspect-ratio:1;border-radius:20px;border:1.5px solid var(--line);
  background:#fff;cursor:pointer;font:inherit;text-align:left;padding:14px;
  display:flex;flex-direction:column;align-items:flex-start;overflow:hidden}
-.tem{font-size:30px;line-height:1}
-.tname{margin-top:auto;font-size:var(--t4);font-weight:650;line-height:1.25;color:var(--ink)}
+/* v9: 30px in a tile 170px across read as a stray character rather than
+   an icon. Big enough to be the thing you look at, and pushed to the
+   middle of the space above the label. */
+.tem{font-size:52px;line-height:1;margin:6px auto 0;display:block}
+.tname{margin-top:auto;padding-top:8px;font-size:var(--t4);font-weight:650;line-height:1.25;color:var(--ink)}
 .tsub{font-size:var(--t2);color:var(--muted);margin-top:2px}
 .tbar{width:100%;height:5px;border-radius:999px;background:var(--line);margin-top:9px;overflow:hidden}
 .tbar i{display:block;height:100%;background:var(--band);transition:width .4s ease}
@@ -610,7 +613,7 @@ const GEN={
    Paper 1 alone, which is what hid the biggest finding: spelling is 20 of the
    70 marks, more than punctuation. It gets the most subtopics, not the fewest. */
 const CAMPS=[
- {id:"t0", em:"\u2712\ufe0f", en:"Spelling", fr:"Orthographe",
+ {id:"t0", em:"\u{1f521}", en:"Spelling", fr:"Orthographe",
   sub_en:"20 of the 70 marks \u2014 the biggest single part",
   sub_fr:"20 des 70 points \u2014 la plus grande partie", stops:[
   {g:"spell",arg:"S38",n:10,code:"S38",en:"Adding endings to longer words",fr:"Ajouter des terminaisons",
@@ -627,7 +630,7 @@ const CAMPS=[
   {g:"spell",arg:"S59",n:8,code:"S59",en:"Words with ough",fr:"Les mots en ough",sub_en:"rough, through, thought",sub_fr:"rough, through"},
   {g:"spell",arg:null,n:14,code:"S38\u2013S61",en:"All of them mixed",fr:"Tout m\u00e9lang\u00e9",sub_en:"the way the real paper comes",sub_fr:"comme au vrai test"},
  ]},
- {id:"t1", em:"\u270f\ufe0f", en:"Punctuation", fr:"Ponctuation",
+ {id:"t1", em:"\u2049\ufe0f", en:"Punctuation", fr:"Ponctuation",
   sub_en:"14 marks \u2014 the biggest part of Paper 1",
   sub_fr:"14 points \u2014 la plus grande partie", stops:[
   {g:"punct",n:12,code:"G5.9",en:"Commas and brackets",fr:"Virgules et parenth\u00e8ses",
@@ -639,7 +642,7 @@ const CAMPS=[
   {g:"apostrophe",n:12,code:"G5.8",en:"Apostrophes",fr:"Apostrophes",sub_en:"owning things, and missing letters",sub_fr:"possession et lettres manquantes"},
   {g:"contract",n:10,code:"G5.8",en:"Shortened words",fr:"Formes contract\u00e9es",sub_en:"don't, she'll, won't",sub_fr:"don't, she'll"},
  ]},
- {id:"t2", em:"\u{1f524}", en:"Word classes", fr:"Classes de mots",
+ {id:"t2", em:"\u{1f3f7}\ufe0f", en:"Word classes", fr:"Classes de mots",
   sub_en:"13 marks \u2014 knowing what each word is doing",
   sub_fr:"13 points \u2014 le r\u00f4le de chaque mot", stops:[
   {g:"wordClass",arg:"noun",n:10,code:"G1.2",en:"Nouns",fr:"Noms",sub_en:"asked 6 times in three years",sub_fr:"6 fois en trois ans"},
@@ -679,7 +682,7 @@ const CAMPS=[
   {g:"standard",n:10,code:"G7.1",en:"We were, not we was",fr:"La forme correcte",sub_en:"the ones that catch people out",sub_fr:"les pi\u00e8ges classiques"},
   {g:"formal",n:10,code:"G7.2",en:"Formal and informal",fr:"Formel et informel",sub_en:"ask or request, buy or purchase",sub_fr:"ask / request"},
  ]},
- {id:"t7", em:"\u2753", en:"Kinds of sentence", fr:"Types de phrases",
+ {id:"t7", em:"\u{1f4ac}", en:"Kinds of sentence", fr:"Types de phrases",
   sub_en:"3 marks \u2014 statement, question, command, exclamation",
   sub_fr:"3 points \u2014 les quatre types", stops:[
   {g:"func",n:12,code:"G2.1\u2013G2.4",en:"Which kind is it?",fr:"Quel type ?",
@@ -1319,8 +1322,40 @@ function coverArt(){
   ${bits.map(([ch,c,x,y,r])=>`<text x="${x}" y="${y+26}" font-size="30" font-weight="600" fill="${c}"
     opacity=".9" transform="rotate(${r} ${x} ${y+26})">${ch}</text>`).join("")}</svg>`;
 }
+/* ================= who is using this =================
+   Asking a child their name once per course is the app admitting it does not
+   know who is using it. Inside Notice Me the child has already been chosen, so
+   the host tells the course and the course never asks. Opened on its own there
+   is nothing to ask about either — a name prompt in front of a revision app is
+   a form standing between a child and the thing they came for.
+   The Pular course keeps its prompt: that one is most often used alone, and
+   there the greeting is the point rather than an obstacle. */
+const COURSE="english";
+
+/* ================= telling Notice Me what was done =================
+   The same arrangement the Fulfulde course uses: when this app is opened in a
+   frame it posts the whole list of finished subtopics to the parent, which
+   marks the ones it does not yet have. The whole list rather than the newest,
+   so a child who worked through three offline is not missing two when they
+   next connect. It posts only to its own origin and only when framed; opened
+   on its own this does nothing. */
+function tellHost(){
+ try{
+  if(window.parent===window) return;
+  window.parent.postMessage({app:"one-hundred",course:COURSE,type:"progress",
+   done:Object.keys(S.d||{})}, location.origin);
+ }catch(e){}
+}
+function hostSays(ev){
+ if(!ev||!ev.data||ev.data.app!=="one-hundred") return;
+ if(ev.origin!==location.origin) return;
+ if(ev.data.type==="who" && ev.data.name){
+  S.name=String(ev.data.name).slice(0,18); S.noname=1; save(); render();
+ }
+}
+if(typeof window!=="undefined") window.addEventListener("message",hostSays);
 function coverHTML(){
- if(!S.name && !S.noname && !V.more) return nameHTML();
+
  const got=Object.keys(S.b||{}).reduce((a,k)=>a+(S.b[k]||0),0);
  const seen=Object.keys(S.d||{}).length>0;
  return `<div class="wrap cover">
@@ -1628,7 +1663,7 @@ function drillHTML(s,T2){
 function advance(){
  const s=byId(V.id); V.i++; V.typed=""; V.pick=null; V.miss=0; V.shown=false;
  S.at={id:V.id,ph:"drill",i:V.i}; save();
- if(V.i>=s.n){ S.d[s.id]=1; S.b[s.id]=Math.max(S.b[s.id]||0,Math.max(0,s.n-V.bad)); save(); V.ph="done"; }
+ if(V.i>=s.n){ S.d[s.id]=1; S.b[s.id]=Math.max(S.b[s.id]||0,Math.max(0,s.n-V.bad)); save(); tellHost(); V.ph="done"; }
  else newQ();
 }
 function doneHTML(s){
