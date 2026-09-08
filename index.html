@@ -342,6 +342,17 @@ main{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
  background:var(--sun-bg);border-radius:999px;padding:10px 20px;color:#6A4A05}
 .streakbig b{font-size:var(--t7)}
 .streakbig span{font-size:var(--t4)}
+
+/* v10: the icon sat small in the top-left of a big tile with the label jammed
+   against the bottom, so a tile read as mostly empty space. Icon to 64,
+   everything centred, label given room. */
+.tile{align-items:center;text-align:center;padding:16px 12px;justify-content:center;gap:2px}
+.tem{margin:6px auto 2px;font-size:0}
+.tem svg{width:64px;height:64px;display:block;margin:0 auto}
+.tname{margin-top:8px;padding-top:0;text-align:center;line-height:1.25}
+.tsub{text-align:center;width:100%}
+.tbar{margin-top:10px}
+.tnum{top:10px;right:12px}
 </style></head><body>
 <header><div class="hrow single">
  <div class="htitle"><b id="hT">One Hundred</b><span id="hS">Year 6 SATs English</span></div>
@@ -1661,7 +1672,7 @@ function homeHTML(){
  CAMPS.forEach((c,ci)=>{
   const mine=ALL.filter(s=>s.camp===ci), dn=mine.filter(s=>S.d[s.id]).length;
   h+=`<button class="tile" onclick="openTopic(${ci})">
-   <span class="tem">${ICON(TICON[ci],getComputedStyle?getComputedStyle(document.documentElement).getPropertyValue("--band").trim()||"#4C5BA8":"#4C5BA8",50)}</span><span class="tname">${esc(c[L]||c.en)}</span>
+   <span class="tem">${ICON(TICON[ci],getComputedStyle?getComputedStyle(document.documentElement).getPropertyValue("--band").trim()||"#4C5BA8":"#4C5BA8",64)}</span><span class="tname">${esc(c[L]||c.en)}</span>
    <span class="tsub">${mine.length} ${esc(t("subtopics"))}</span>
    <span class="tbar"><i style="width:${Math.round(dn/mine.length*100)}%"></i></span>
    <span class="tnum num">${dn}/${mine.length}</span></button>`;
