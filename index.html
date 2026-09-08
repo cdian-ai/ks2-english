@@ -308,11 +308,16 @@ main{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
 .wordin:focus{outline:none;border-color:var(--band)}
 .listen{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:#fff;
  border-radius:999px;padding:9px 16px;font:inherit;font-size:var(--t4);color:var(--ink2);cursor:pointer;margin-top:6px}
+
+.reveal{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 0 4px}
+.rl{margin:0;font-size:var(--t3);color:var(--muted)}
+.ra{margin:0;font-size:var(--t7);font-weight:650;color:var(--band);line-height:1.3;text-align:center}
+.listen:active{background:#F2F4FB}
+.hrow.single .htitle{flex:1 1 auto}
 </style></head><body>
-<header><div class="hrow">
+<header><div class="hrow single">
  <div class="htitle"><b id="hT">One Hundred</b><span id="hS">Year 6 SATs English</span></div>
- <div class="lang"><button id="lEN" class="on" onclick="setLang('en')">EN</button>
- <button id="lFR" onclick="setLang('fr')">FR</button></div></div>
+ </div>
  <div class="track"><i id="bar"></i></div></header>
 <main id="main"><div id="app"></div><div class="pad"></div></main>
 <button class="back" id="back" onclick="goMap()" hidden>&lsaquo;</button>
@@ -1220,6 +1225,13 @@ const T={
  practise:{en:"Practise this",fr:"S\u2019entra\u00eener"},
  iknow:{en:"I know this \u2014 let me practise",fr:"Je sais faire \u2014 laisse-moi m\u2019entra\u00eener"},
  showme:{en:"Show me how again",fr:"Remontre-moi comment"},
+ giveup:{en:"Show me the answer",fr:"Montre-moi la r\u00e9ponse"},
+ theans:{en:"The answer was",fr:"La r\u00e9ponse \u00e9tait"},
+ moveon:{en:"Next one",fr:"Suivante"},
+ hearit:{en:"Hear it",fr:"\u00c9couter"},
+ hearagain:{en:"Hear it again",fr:"R\u00e9\u00e9couter"},
+ saysyn:{en:"Read aloud by the phone until the recordings are made.",
+         fr:"Lu par le t\u00e9l\u00e9phone en attendant les enregistrements."},
  next:{en:"Next",fr:"Suivant"}, back:{en:"Back to the topics",fr:"Retour aux sujets"},
  again:{en:"Try again",fr:"R\u00e9essayer"}, camp:{en:"Finished",fr:"Termin\u00e9"},
  finish:{en:"Finish",fr:"Terminer"}, score:{en:"marks",fr:"points"},
@@ -1243,7 +1255,13 @@ const T={
    Lifted from the maths app on purpose: same cover, same name prompt, same
    tiles, same subtopic page, same phases, same paper. Two courses that feel
    like one product is the point. */
-let L=localStorage.getItem("oh-en.lang")||"en";
+/* v2: English only. In the maths app the French earned its place — the maths
+   is language-independent, so a French-speaking child can genuinely do it in
+   French. Here the subject IS English: answering "quel type de phrase" about
+   an English sentence makes a child translate on top of the grammar, and the
+   test they are sitting is in English. The French strings stay in the file so
+   nothing had to be rewritten; nothing reads them. */
+const L="en";
 const t=k=>(T[k]||{})[L]||(T[k]||{}).en||k;
 const w=(o,k)=>o[k+"_"+L]!==undefined?o[k+"_"+L]:o[k+"_en"];
 const KEY="oh-en.v1";
@@ -1256,13 +1274,34 @@ const norm=x=>String(x).replace(/\s+/g," ").trim().toLowerCase().replace(/[.!?]$
 const byId=id=>ALL.filter(s=>s.id===id)[0];
 const VIDEO={};
 const mmss=n=>Math.floor(n/60)+":"+String(n%60).padStart(2,"0");
+/* ---------- hearing the word ----------
+   Spelling is dictated in the real test: the child hears a word, sees the
+   sentence with a gap, and writes it. Until the recordings exist the phone
+   reads it, which is enough to check the course and enough for a child to
+   practise with. AUDIO[word] takes a real file the moment there is one, and
+   the recorded voice is preferred over the synthetic one automatically. */
+const AUDIO={};   /* e.g. "rough":"audio/rough.mp3" */
+function say(word){
+ const w=String(word).trim();
+ if(AUDIO[w]){ try{ new Audio(AUDIO[w]).play(); return }catch(e){} }
+ try{
+  const ss=window.speechSynthesis;
+  if(!ss||typeof SpeechSynthesisUtterance==="undefined") return;
+  ss.cancel();
+  const u=new SpeechSynthesisUtterance(w);
+  u.lang="en-GB"; u.rate=0.85;
+  ss.speak(u);
+ }catch(e){}
+}
+function sayTwice(word,sentence){
+ say(word);
+ if(sentence){ setTimeout(()=>say(sentence.replace(/_+/g,word)), 1200); }
+}
 let lastTopic;
 let V={s:"cover"};
-function setLang(x){L=x;localStorage.setItem("oh-en.lang",x);render()}
 function render(){
  const done=Object.keys(S.d).length;
  document.documentElement.style.setProperty("--band",BANDS[Math.min(4,Math.floor(done/8))]);
- lEN.className=L==="en"?"on":""; lFR.className=L==="fr"?"on":"";
  hT.textContent=t("title"); hS.textContent=t("sub");
  bar.style.width=Math.round(done/ALL.length*100)+"%";
  back.hidden=(V.s==="cover"||V.s==="shelf");
@@ -1521,7 +1560,9 @@ function qBody(q,isDiag){
  /* type */
  return `${q.sent?`<p class="sent">${esc(q.sent)}</p>`:""}
   <p class="qq">${q.q}</p>
-  ${q.clip?`<button class="listen"><span>\u{1f50a}</span>${esc(t("listen"))}</button>`:""}
+  ${q.clip?`<button class="listen" onclick="sayTwice('${String(q.a).replace(/'/g,"\\'")}','${String(q.sent||"").replace(/'/g,"\\'")}')">
+   <span>\u{1f50a}</span>${esc(t("listen"))}</button>
+   <p class="covsm">${esc(t("saysyn"))}</p>`:""}
   <input class="wordin" id="win" type="text" value="${esc(V.typed)}" oninput="V.typed=this.value"
    placeholder="\u2026" autocapitalize="none" autocorrect="off" spellcheck="false">
   <button class="go2" onclick="typeCheck('${done}')">${esc(t("check"))}</button>
@@ -1559,20 +1600,33 @@ function typeCheck(done){
 function markWrong(done){ if(done==="answer"){V.bad=(V.bad||0)+1} }
 function finish(ok,done){
  if(done==="diagCheck"){ diagCheck(ok); return; }
- if(ok){ advance(); } else { V.bad=(V.bad||0)+1; V.miss=(V.miss||0)+1; V.typed=""; V.pick=null; }
+ if(ok){ advance(); }
+ else { V.bad=(V.bad||0)+1; V.miss=(V.miss||0)+1; V.typed=""; V.pick=null; }
 }
+/* v2: a wrong answer used to keep a child on the same question for ever. There
+   was no skip and no reveal, so the only way out of a spelling you did not
+   know was to close the app. Three wrong and the answer is offered; taking it
+   costs the mark and moves on, which is what a teacher would do. */
+function giveUp(){ V.shown=true; render(); }
+function moveOn(){ V.shown=false; V.bad=(V.bad||0)+1; advance(); render(); }
 function drillHTML(s,T2){
  const q=V.q, dots=Array.from({length:s.n}).map((_,k)=>`<i class="${k<V.i?"on":""}"></i>`).join("");
  return `<div class="wrap"><p class="step">${esc(s[L]||s.en)} \u00b7 ${V.i+1} ${esc(t("of"))} ${s.n}</p>
   ${phaseBar(2)}
-  <div class="card">${qBody(q,false)}
-   ${V.miss>=2?`<div class="note">${esc(t("look"))} \u2014 ${esc(w(T2.steps[0],"why"))}</div>`:""}
+  <div class="card">${V.shown?"":qBody(q,false)}
+   ${V.shown?`<div class="reveal"><p class="rl">${esc(t("theans"))}</p>
+     <p class="ra">${esc(Array.isArray(q.a)?q.a.join(", "):q.a)}</p>
+     ${q.clip||q.ask==="type"?`<button class="listen" onclick="say('${String(q.a).replace(/'/g,"\\'")}')">
+      <span>\u{1f50a}</span>${esc(t("hearit"))}</button>`:""}</div>`:""}
+   ${!V.shown&&V.miss>=2?`<div class="note">${esc(t("look"))} \u2014 ${esc(w(T2.steps[0],"why"))}</div>`:""}
    <div class="tally">${dots}</div></div>
-  ${V.bad>=3?`<button class="go2 warm small" onclick="backToLesson()">\u25b6 ${esc(t("vidagain"))}</button>`:""}
+  ${V.shown?`<button class="go2" onclick="moveOn()">${esc(t("moveon"))}</button>`:""}
+  ${!V.shown&&V.miss>=2?`<button class="go2 quiet small" onclick="giveUp()">${esc(t("giveup"))}</button>`:""}
+  ${!V.shown&&V.bad>=3?`<button class="go2 warm small" onclick="backToLesson()">\u25b6 ${esc(t("vidagain"))}</button>`:""}
   </div>`;
 }
 function advance(){
- const s=byId(V.id); V.i++; V.typed=""; V.pick=null; V.miss=0;
+ const s=byId(V.id); V.i++; V.typed=""; V.pick=null; V.miss=0; V.shown=false;
  S.at={id:V.id,ph:"drill",i:V.i}; save();
  if(V.i>=s.n){ S.d[s.id]=1; S.b[s.id]=Math.max(S.b[s.id]||0,Math.max(0,s.n-V.bad)); save(); V.ph="done"; }
  else newQ();
