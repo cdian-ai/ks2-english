@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>One Hundred — Year 6 SATs English</title><meta name="theme-color" content="#22303F">
+<style>
+/* ================= One Hundred =================
+   Built on the 2025 and 2026 KS2 papers rather than on the programme of study:
+   every stop names the content-domain codes it serves and carries as many
+   questions as that code's weight in the test deserves.
+   Paper 1 is 36 constructed answers, so arithmetic is typed on a keypad, never
+   chosen from four options — offering options would train a skill the test
+   does not reward. */
+:root{
+ --ink:#1B2430;--ink2:#4A5A6B;--muted:#8494A4;--paper:#F7F9FA;--card:#fff;--line:#E1E7EC;
+ --band:#5B6BAE;--sun:#E0A32E;--sun-bg:#FDF3DE;--yes:#2F7D57;--yes-bg:#E8F4EC;
+ --no:#B0463C;--no-bg:#FBECEA;
+ --t1:9px;--t2:11px;--t3:13px;--t4:15px;--t5:18px;--t6:22px;--t7:28px;--t8:40px;--t9:52px;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;overflow:hidden}
+body{font:var(--t4)/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+ color:var(--ink);background:var(--paper);padding-top:env(safe-area-inset-top)}
+.num{font-variant-numeric:tabular-nums}
+header{padding:10px 14px 8px;background:var(--paper);position:relative;z-index:5}
+.hrow{display:flex;align-items:center;gap:10px}
+.htitle{flex:1 1 auto;min-width:0}
+.htitle b{display:block;font-size:var(--t5);font-weight:650;line-height:1.2}
+.htitle span{display:block;font-size:var(--t3);color:var(--muted)}
+.lang{display:flex;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.lang button{border:0;background:transparent;font:inherit;font-size:var(--t3);font-weight:700;
+ color:var(--muted);padding:6px 11px;cursor:pointer}
+.lang button.on{background:var(--band);color:#fff}
+.track{height:6px;border-radius:999px;background:var(--line);margin-top:9px;overflow:hidden}
+.track i{display:block;height:100%;background:var(--band);width:0;transition:width .5s}
+main{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
+ padding:0 14px calc(30px + env(safe-area-inset-bottom))}
+.pad{height:104px}
+.wrap{max-width:520px;margin:0 auto}
+.mhead{text-align:center;margin:16px 0 14px}
+.mhead h1{margin:0;font-size:var(--t7);font-weight:650}
+.mhead p{margin:4px 0 0;font-size:var(--t4);color:var(--ink2)}
+.mhead .alt{font-size:var(--t3);color:var(--muted);margin-top:6px}
+.paperbtn{display:flex;align-items:center;gap:12px;width:100%;padding:15px;margin:6px 0 16px;
+ border-radius:18px;border:2px solid var(--sun);background:var(--sun-bg);cursor:pointer;
+ font:inherit;text-align:left}
+.paperbtn b{display:block;font-size:var(--t5);color:#6A4A05}
+.paperbtn span{display:block;font-size:var(--t3);color:#8A6A25}
+.camp{margin:0 0 6px}
+.chead{display:flex;align-items:center;gap:11px;padding:12px 4px 8px}
+.chead .em{font-size:var(--t6)}
+.chead b{flex:1 1 auto;font-size:var(--t5);font-weight:650}
+.chead small{font-size:var(--t3);color:var(--muted);display:block;font-weight:400}
+.chead .cnt{font-size:var(--t3);color:var(--band);font-weight:700}
+.slope{display:flex;flex-direction:column-reverse}
+.stop{position:relative;display:flex;align-items:center;gap:11px;padding:7px 0}
+.stop:before{content:"";position:absolute;left:23px;top:0;bottom:0;width:3px;background:var(--line)}
+.stop.done:before{background:var(--band)}
+.stop:first-child:before{top:50%}.stop:last-child:before{bottom:50%}
+.pin{position:relative;z-index:2;width:48px;height:48px;border-radius:50%;flex:0 0 auto;
+ display:flex;align-items:center;justify-content:center;font-size:var(--t4);font-weight:700;
+ background:#fff;border:2.5px solid var(--line);cursor:pointer;font-family:inherit;color:var(--muted)}
+.pin.done{border-color:var(--band);background:var(--band);color:#fff}
+.pin.now{border-color:var(--band);color:var(--band);box-shadow:0 0 0 5px rgba(78,140,106,.16)}
+.si{flex:1 1 auto;min-width:0;text-align:left}
+.si b{display:block;font-size:var(--t4);font-weight:600}
+.si span{display:block;font-size:var(--t2);color:var(--muted)}
+.sc{font-size:var(--t3);color:var(--band);font-weight:700}
+.card{background:var(--card);border-radius:18px;padding:20px 16px;
+ box-shadow:0 1px 2px rgba(27,36,48,.05),0 8px 24px rgba(27,36,48,.05);
+ display:flex;flex-direction:column;align-items:center;text-align:center}
+.step{font-size:var(--t3);color:var(--muted);text-align:center;margin:10px 0 12px}
+.qbig{font-size:var(--t9);font-weight:600;line-height:1.1;letter-spacing:.01em;margin:14px 0}
+.qmid{font-size:var(--t7);font-weight:600;margin:14px 0}
+.hint{font-size:var(--t3);color:var(--muted);margin:0 0 4px}
+.slot{min-height:56px;display:flex;align-items:center;justify-content:center;
+ font-size:var(--t8);font-weight:600;color:var(--band);margin:2px 0 6px}
+.slot.empty{color:var(--line)}
+.slot.wrong{color:var(--no)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;max-width:320px;margin-top:8px}
+.key{border:1.5px solid var(--line);border-radius:14px;background:#fff;font:inherit;
+ font-size:var(--t6);font-weight:600;padding:14px 0;cursor:pointer;font-variant-numeric:tabular-nums}
+.key:active{transform:translateY(1px)}
+.key.wide{grid-column:span 1}
+.key.go{background:var(--band);color:#fff;border-color:var(--band)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:9px;width:100%;margin-top:16px}
+.opt{border:1.5px solid var(--line);border-radius:14px;background:#fff;padding:14px 8px;font:inherit;
+ font-size:var(--t5);font-weight:600;cursor:pointer;font-variant-numeric:tabular-nums;color:var(--ink)}
+.opt.yes{border-color:var(--yes);background:var(--yes-bg);color:var(--yes)}
+.opt.no{border-color:var(--no);background:var(--no-bg);color:var(--no)}
+.teach{font-size:var(--t4);line-height:1.6;margin:16px 6px 0;max-width:36ch;color:var(--ink)}
+.code{font-size:var(--t2);color:var(--muted);letter-spacing:.04em;margin-top:14px}
+.go2{width:100%;max-width:340px;border:0;border-radius:14px;background:var(--band);color:#fff;
+ font:inherit;font-size:var(--t5);font-weight:700;padding:15px;margin-top:16px;cursor:pointer}
+.go2.quiet{background:#fff;color:var(--ink2);border:1.5px solid var(--line)}
+.back{position:fixed;left:12px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:6;
+ width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:#fff;
+ font-size:var(--t5);color:var(--ink2);cursor:pointer}
+.tally{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.tally i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.tally i.on{background:var(--band)}.tally i.bad{background:var(--no)}
+.note{margin-top:14px;padding:11px 13px;border-radius:14px;background:var(--sun-bg);
+ font-size:var(--t3);line-height:1.55;color:#6A4A05;max-width:36ch}
+.timer{font-size:var(--t6);font-weight:700;color:var(--ink2);font-variant-numeric:tabular-nums}
+.timer.low{color:var(--no)}
+.pgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;width:100%;margin-top:12px}
+.pg{aspect-ratio:1;border-radius:9px;border:1.5px solid var(--line);background:#fff;
+ font:inherit;font-size:var(--t2);color:var(--muted);cursor:pointer;padding:0}
+.pg.ans{border-color:var(--band);color:var(--band);font-weight:700}
+.pg.now{background:var(--band);color:#fff;border-color:var(--band)}
+.res{text-align:center}.res .em{font-size:var(--t8)}
+.res h2{margin:6px 0 2px;font-size:var(--t6)}
+.res p{margin:0;color:var(--muted);font-size:var(--t4)}
+.bar2{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin:12px 0 4px;width:100%;max-width:340px}
+.bar2 i{display:block;height:100%;background:var(--band)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.phases{display:flex;gap:5px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.pz{font-size:var(--t2);color:var(--muted);padding:4px 10px;border-radius:999px;background:#fff;
+ border:1.5px solid var(--line)}
+.pz.on{background:var(--band);color:#fff;border-color:var(--band);font-weight:700}
+.pz.past{color:var(--band);border-color:var(--band)}
+.storyem{font-size:var(--t9);line-height:1;margin:8px 0 14px}
+.storyline{font-size:var(--t5);line-height:1.55;margin:0;max-width:32ch;color:var(--ink)}
+.steps{width:100%;display:flex;flex-direction:column;gap:9px;margin-top:14px;text-align:left}
+.stepline{border-left:3px solid var(--band);padding:8px 0 8px 12px}
+.stepline b{display:block;font-size:var(--t6);color:var(--ink)}
+.stepline span{display:block;font-size:var(--t4);color:var(--ink2);margin-top:3px;line-height:1.5}
+.stepline i{display:block;font-style:normal;font-size:var(--t3);color:var(--muted);margin-top:5px;line-height:1.5}
+.stepline.done{border-left-color:var(--line);opacity:.6}
+.stepline.done b{font-size:var(--t5);color:var(--band)}
+.guideq{font-size:var(--t5);line-height:1.5;margin:16px 4px 4px;max-width:32ch;color:var(--ink)}
+
+.cover{text-align:center;padding-top:14px}
+.covmark{font-size:56px;line-height:1}
+.covh{margin:10px 0 2px;font-size:var(--t7);font-weight:650;line-height:1.2}
+.covsub{margin:0 0 16px;font-size:var(--t4);color:var(--muted)}
+.covcard{align-items:flex-start;text-align:left;gap:0}
+.covwho{margin:0 0 12px;font-size:var(--t5);font-weight:600;line-height:1.45}
+.covp{margin:0 0 11px;font-size:var(--t4);line-height:1.6;color:var(--ink2)}
+.covsm{margin:4px 0 0;font-size:var(--t3);color:var(--muted)}
+.wcard{display:flex;align-items:center;gap:12px;width:100%;padding:13px 14px;margin-bottom:8px;
+ border-radius:16px;border:1.5px solid var(--line);background:#fff;cursor:pointer;font:inherit;text-align:left}
+.wcard.next{border-color:var(--band);background:#F2F8F4}
+.wm{flex:0 0 auto;min-width:34px;height:34px;border-radius:10px;background:var(--sun-bg);color:#6A4A05;
+ display:flex;align-items:center;justify-content:center;font-weight:700;font-size:var(--t4)}
+.wcard.next .wm{background:var(--band);color:#fff}
+.wx{flex:1 1 auto;min-width:0}
+.wx b{display:block;font-size:var(--t4);font-weight:600}
+.wx small{display:block;font-size:var(--t2);color:var(--muted)}
+.wa{color:var(--muted)}
+.shelfh{margin:16px 0 4px;font-size:var(--t3);color:var(--muted)}
+.strong{margin:0 0 6px;font-size:var(--t3);color:var(--ink2);line-height:1.6}
+.sh{display:flex;align-items:center;gap:12px;width:100%;padding:14px;margin-top:8px;
+ border-radius:16px;border:1.5px solid var(--line);background:#fff;cursor:pointer;font:inherit;text-align:left}
+.sh.open{border-color:var(--band);border-bottom-left-radius:0;border-bottom-right-radius:0}
+.sh .em{font-size:var(--t6)}
+.shx{flex:1 1 auto;min-width:0}
+.shx b{display:block;font-size:var(--t4);font-weight:650}
+.shx small{display:block;font-size:var(--t2);color:var(--muted)}
+.shc{font-size:var(--t3);color:var(--band);font-weight:700}
+.shbody{border:1.5px solid var(--band);border-top:0;border-radius:0 0 16px 16px;padding:4px;background:#fff}
+.row{display:flex;align-items:center;gap:10px;width:100%;padding:10px;border:0;background:transparent;
+ cursor:pointer;font:inherit;text-align:left;border-radius:11px}
+.row:active{background:#F2F8F4}
+.rm{flex:0 0 auto;width:22px;text-align:center;color:var(--muted)}
+.row.done .rm{color:var(--band)}
+.rx{flex:1 1 auto;min-width:0}
+.rx b{display:block;font-size:var(--t4);font-weight:500}
+.rx small{display:block;font-size:var(--t1);color:var(--muted);letter-spacing:.03em}
+.rs{font-size:var(--t3);color:var(--band);font-weight:700}
+
+.whybtn{margin-top:6px;border:1.5px solid var(--line);border-radius:999px;background:#fff;
+ font:inherit;font-size:var(--t2);color:var(--muted);padding:3px 11px;cursor:pointer}
+.covlead{margin:0 0 18px;font-size:var(--t5);line-height:1.5;color:var(--ink)}
+.covmore{margin-top:18px;border:0;background:transparent;font:inherit;font-size:var(--t3);
+ color:var(--muted);text-decoration:underline;cursor:pointer}
+.dgbar{display:flex;align-items:center;gap:10px;margin:2px 0 10px}
+.dgback{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:#fff;
+ font-size:var(--t5);color:var(--ink2);cursor:pointer;flex:0 0 auto}
+.dgback:disabled{opacity:.3}
+.dgdots{flex:1 1 auto;display:flex;gap:5px;justify-content:center}
+.dgdots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.dgdots i.on{background:var(--band)}
+.dgdots i.now{box-shadow:0 0 0 3px rgba(78,140,106,.22)}
+.dgn{font-size:var(--t3);color:var(--muted);flex:0 0 auto}
+.shw{color:var(--band);font-weight:700}
+
+.shdots{display:inline-flex;gap:3px;vertical-align:middle;margin-right:5px}
+.shdots i{width:6px;height:6px;border-radius:50%;background:var(--line)}
+.shdots i.on{background:var(--band)}
+.gotline{margin:8px 0 0;font-size:var(--t3);color:var(--muted)}
+.gotline b{font-size:var(--t5);color:var(--band)}
+.go2.small{font-size:var(--t4);padding:11px;max-width:280px}
+
+.artbox{width:100%;display:flex;justify-content:center;margin:4px 0 10px}
+.art{width:100%;max-width:280px;height:auto;display:block}
+.trap{display:flex;gap:8px;align-items:flex-start;margin:0 0 10px;padding:10px 13px;border-radius:14px;
+ background:var(--sun-bg);color:#6A4A05;font-size:var(--t3);line-height:1.5}
+.nice{margin:0 0 10px;padding:9px 14px;border-radius:999px;background:var(--yes-bg);color:var(--yes);
+ font-size:var(--t4);font-weight:700;text-align:center;animation:pop .22s ease}
+.nice.fix{background:var(--sun-bg);color:#6A4A05}
+@keyframes pop{from{opacity:0;transform:translateY(6px) scale(.96)}to{opacity:1;transform:none}}
+.shfill{position:relative;flex:0 0 auto;width:34px;height:40px;border-radius:9px;background:var(--line);
+ overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+.shfill>span{position:absolute;left:0;right:0;bottom:0;background:var(--band);transition:height .4s ease}
+.shfill b{position:relative;font-size:var(--t1);color:var(--ink);width:100%;text-align:center;padding-bottom:3px}
+
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 14px}
+.tile{position:relative;aspect-ratio:1;border-radius:20px;border:1.5px solid var(--line);
+ background:#fff;cursor:pointer;font:inherit;text-align:left;padding:14px;
+ display:flex;flex-direction:column;align-items:flex-start;overflow:hidden}
+.tem{font-size:30px;line-height:1}
+.tname{margin-top:auto;font-size:var(--t4);font-weight:650;line-height:1.25;color:var(--ink)}
+.tsub{font-size:var(--t2);color:var(--muted);margin-top:2px}
+.tbar{width:100%;height:5px;border-radius:999px;background:var(--line);margin-top:9px;overflow:hidden}
+.tbar i{display:block;height:100%;background:var(--band);transition:width .4s ease}
+.tnum{position:absolute;top:14px;right:14px;font-size:var(--t2);color:var(--muted);font-weight:700}
+.sublist{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+.subrow{display:flex;align-items:center;gap:11px;width:100%;padding:14px;border-radius:16px;
+ border:1.5px solid var(--line);background:#fff;cursor:pointer;font:inherit;text-align:left}
+.subrow.done{border-color:var(--band)}
+.srm{flex:0 0 auto;width:24px;text-align:center;color:var(--muted);font-size:var(--t3)}
+.subrow.done .srm{color:var(--band)}
+.srx{flex:1 1 auto;min-width:0}
+.srx b{display:block;font-size:var(--t4);font-weight:600}
+.srx small{display:block;font-size:var(--t2);color:var(--muted)}
+.srs{font-size:var(--t3);color:var(--band);font-weight:700}
+.vidbox{margin:2px 0 12px}
+.vidph{display:flex;align-items:center;gap:13px;padding:16px;border-radius:18px;
+ border:2px dashed var(--line);background:#fff}
+.vidplay{flex:0 0 auto;width:46px;height:46px;border-radius:50%;background:var(--sun-bg);
+ color:var(--sun);display:flex;align-items:center;justify-content:center;font-size:var(--t5)}
+.vidt b{display:block;font-size:var(--t4);font-weight:650}
+.vidt small{display:block;font-size:var(--t2);color:var(--muted);letter-spacing:.02em}
+.card.story{align-items:flex-start;text-align:left;flex-direction:row;gap:13px;padding:15px;margin-bottom:8px}
+.card.story .storyem{font-size:28px;margin:0;line-height:1.1}
+.card.story .storyline{font-size:var(--t4);line-height:1.55;max-width:none;margin:0}
+.lh{margin:16px 0 8px;font-size:var(--t5);font-weight:650}
+.card.artcard{padding:14px;margin-bottom:8px}
+.card.lesson{align-items:stretch;text-align:left}
+.card.lesson .qmid{text-align:center;margin:0 0 4px}
+.go2.warm{background:var(--sun);color:#3B2A05}
+
+.lh.first{margin-top:6px}
+.vid{width:100%;border-radius:18px;display:block;background:#000;aspect-ratio:16/9}
+.jumph{margin:14px 0 7px;font-size:var(--t3);color:var(--muted)}
+.jumps{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.jump{display:flex;align-items:center;gap:11px;width:100%;padding:10px 13px;border-radius:13px;
+ border:1.5px solid var(--line);background:#fff;cursor:pointer;font:inherit;text-align:left}
+.jump:active{background:#F2F8F4}
+.jt{flex:0 0 auto;font-size:var(--t2);color:var(--band);font-weight:700;min-width:32px}
+.jx{flex:1 1 auto;font-size:var(--t3);color:var(--ink2);line-height:1.4}
+.fallback{margin:0 0 10px;font-size:var(--t3);color:var(--muted);font-style:italic}
+
+.lhsub{margin:-4px 0 8px;font-size:var(--t3);color:var(--muted);line-height:1.5}
+.card.recall{align-items:stretch;text-align:left;padding:16px}
+.card.recall .qmid{text-align:center;margin:0 0 10px;font-size:var(--t6)}
+.rsteps{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:7px}
+.rsteps li{font-size:var(--t5);font-weight:600;color:var(--ink);line-height:1.35}
+.rsteps li::marker{color:var(--muted);font-size:var(--t3);font-weight:400}
+
+.covart{width:100%;max-width:300px;height:auto;display:block;margin:6px auto 10px}
+.covgot{margin:2px 0 0;font-size:var(--t3);color:var(--muted)}
+.covgot b{font-size:var(--t6);color:var(--band);margin-right:5px}
+.insideh{margin:26px 0 9px;font-size:var(--t3);color:var(--muted);font-weight:600;text-align:center}
+.inside{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%}
+.ic{display:flex;flex-direction:column;align-items:center;gap:2px;padding:13px 6px;border-radius:16px;
+ background:#fff;border:1.5px solid var(--line);font-size:var(--t2);color:var(--muted);
+ text-align:center;line-height:1.3}
+.ic b{font-size:var(--t6);color:var(--ink);font-weight:650}
+.peek{display:flex;justify-content:center;gap:10px;margin-top:12px;font-size:23px}
+.pk{opacity:.75}
+.nameinput{width:100%;max-width:320px;border:2px solid var(--line);border-radius:16px;background:#fff;
+ font:inherit;font-size:var(--t7);font-weight:600;text-align:center;padding:14px;color:var(--ink);
+ margin:6px 0 4px}
+.nameinput:focus{outline:none;border-color:var(--band)}
+.greet{margin:0 0 2px;font-size:var(--t4);color:var(--band);font-weight:650}
+
+.brand{margin:0 0 3px;font-size:var(--t3);font-weight:700;letter-spacing:.14em;color:var(--band)}
+.covwhy{margin:9px 0 0;font-size:var(--t3);color:var(--muted);line-height:1.5;max-width:30ch}
+
+/* English-only components. The shell, the type scale, the card, the phase
+   strip and every button family are the maths app's — deliberately, so the
+   two read as one product when they sit beside each other in Notice Me. Only
+   the accent colour and the question surfaces differ, because English asks a
+   child to tap a word or write one, never to key a number. */
+.sent{font-size:var(--t6);line-height:1.7;text-align:center;margin:10px 0 4px;max-width:30ch}
+.tw{display:inline-block;border:0;background:transparent;font:inherit;font-size:var(--t6);
+ color:var(--ink);padding:2px 3px;border-radius:8px;cursor:pointer;line-height:1.5}
+.tw.on{background:var(--band);color:#fff}
+.tw.bad{background:var(--no-bg);color:var(--no)}
+.gap{display:inline-block;width:16px;height:26px;border-bottom:2.5px dashed var(--line);
+ margin:0 1px;vertical-align:-5px;cursor:pointer;border-radius:3px;background:transparent}
+.gap.on{border-bottom-color:var(--band);background:color-mix(in srgb,var(--band) 16%,transparent)}
+.qq{font-size:var(--t5);line-height:1.5;margin:14px 4px 4px;max-width:32ch;color:var(--ink)}
+.wordin{width:100%;max-width:320px;border:2px solid var(--line);border-radius:16px;background:#fff;
+ font:inherit;font-size:var(--t7);font-weight:600;text-align:center;padding:14px;color:var(--ink);margin:8px 0 2px}
+.wordin:focus{outline:none;border-color:var(--band)}
+.listen{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:#fff;
+ border-radius:999px;padding:9px 16px;font:inherit;font-size:var(--t4);color:var(--ink2);cursor:pointer;margin-top:6px}
+</style></head><body>
+<header><div class="hrow">
+ <div class="htitle"><b id="hT">One Hundred</b><span id="hS">Year 6 SATs English</span></div>
+ <div class="lang"><button id="lEN" class="on" onclick="setLang('en')">EN</button>
+ <button id="lFR" onclick="setLang('fr')">FR</button></div></div>
+ <div class="track"><i id="bar"></i></div></header>
+<main id="main"><div id="app"></div><div class="pad"></div></main>
+<button class="back" id="back" onclick="goMap()" hidden>&lsaquo;</button>
+<script>
+
+/* ================= question generators =================
+   English is not maths: the answers are words, not numbers, so a keypad is the
+   wrong instrument. The real paper asks a child to circle a word, tick a box,
+   insert a punctuation mark or write a spelling \u2014 so those are the four things
+   this app asks them to do, and nothing else.
+
+   Content banks rather than arithmetic: each generator draws from sentences
+   written for it, seeded so a question is stable while on screen and different
+   next visit. */
+const R = s => { let x=(s*1103515245+12345)&0x7fffffff; return ()=>(x=(x*1103515245+12345)&0x7fffffff)/0x7fffffff; };
+const pick=(r,a)=>a[Math.floor(r()*a.length)];
+const shuffle=(r,a)=>{const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;};
+
+/* ---- banks ---- */
+const NOUNS=[["The crumbling |castle| stood on the |hill|.",["castle","hill"]],
+ ["My |brother| lost his |shoes| at the |park|.",["brother","shoes","park"]],
+ ["The |teacher| marked every |book| before |lunch|.",["teacher","book","lunch"]],
+ ["A cold |wind| blew across the |field|.",["wind","field"]],
+ ["Her |courage| surprised the whole |village|.",["courage","village"]]];
+const VERBS=[["Jamila |walked| home and |opened| the door.",["walked","opened"]],
+ ["The dog |barked| loudly and |chased| the cat.",["barked","chased"]],
+ ["We |sang| together while Dad |cooked|.",["sang","cooked"]],
+ ["She |carried| the box and |placed| it down.",["carried","placed"]],
+ ["The crowd |cheered| when the runner |finished|.",["cheered","finished"]]];
+const ADJS=[["The |old| man carried a |heavy| bag.",["old","heavy"]],
+ ["A |bright| light filled the |empty| room.",["bright","empty"]],
+ ["The |tiny| bird sat on a |broken| branch.",["tiny","broken"]],
+ ["We ate |sweet| mangoes on a |warm| evening.",["sweet","warm"]],
+ ["Her |quiet| voice calmed the |restless| class.",["quiet","restless"]]];
+const ADVS=[["She spoke |quietly| and left |quickly|.",["quietly","quickly"]],
+ ["He |carefully| lifted the lid.",["carefully"]],
+ ["They waited |patiently| outside.",["patiently"]],
+ ["The rain fell |steadily| all night.",["steadily"]],
+ ["We |often| walk to school |together|.",["often","together"]]];
+const PRON=[["|She| gave |them| the letter.",["She","them"]],
+ ["|We| told |him| about |it|.",["We","him","it"]],
+ ["|They| watched |us| from the window.",["They","us"]],
+ ["|He| passed |her| the ball.",["He","her"]]];
+const DETS=[["|The| dog chased |a| ball across |the| garden.",["The","a","the"]],
+ ["|My| sister borrowed |some| books.",["My","some"]],
+ ["|Those| children found |three| coins.",["Those","three"]],
+ ["|This| road leads to |our| school.",["This","our"]]];
+const PREP=[["The cat sat |under| the table |beside| the door.",["under","beside"]],
+ ["We walked |through| the park and |across| the bridge.",["through","across"]],
+ ["She put the letter |in| the drawer.",["in"]],
+ ["The ball rolled |behind| the shed.",["behind"]]];
+const CONJ=[["I stayed inside |because| it was raining.",["because"]],
+ ["We waited |until| the bus arrived.",["until"]],
+ ["He ran fast |but| he did not win.",["but"]],
+ ["|Although| she was tired, she carried on.",["Although"]],
+ ["Call me |when| you get home.",["when"]]];
+const CLASSES={noun:NOUNS,verb:VERBS,adjective:ADJS,adverb:ADVS,pronoun:PRON,
+ determiner:DETS,preposition:PREP,conjunction:CONJ};
+
+const SYN=[["vast","enormous","tiny","gentle","narrow"],["unpleasant","nasty","kind","calm","bright"],
+ ["agreeable","pleasant","rude","heavy","dark"],["rapid","quick","slow","quiet","dull"],
+ ["ancient","very old","modern","clean","brave"],["courageous","brave","fearful","tired","polite"],
+ ["furious","very angry","pleased","curious","weary"],["miserable","very unhappy","cheerful","noisy","eager"]];
+const ANT=[["rough","smooth","bumpy","coarse","uneven"],["vivid","dull","bright","colourful","clear"],
+ ["ancient","modern","old","aged","historic"],["generous","selfish","kind","giving","warm"],
+ ["shallow","deep","flat","wide","thin"],["temporary","permanent","brief","short","passing"]];
+const PREFIX=[["im","possible","impossible"],["in","correct","incorrect"],["dis","appear","disappear"],
+ ["de","frost","defrost"],["re","build","rebuild"],["over","cook","overcook"],["mis","spell","misspell"],
+ ["im","mature","immature"],["un","happy","unhappy"],["sub","heading","subheading"]];
+const SUFFIX=[["develop","ment","development"],["outrage","ous","outrageous"],["weak","ness","weakness"],
+ ["power","less","powerless"],["recruit","ment","recruitment"],["advert","ise","advertise"],
+ ["class","ify","classify"],["motivate","ion","motivation"],["care","ful","careful"],["quick","ly","quickly"]];
+
+const PUNCT=[
+ {k:"comma",sent:"She decided|,| although she was feeling tired|,| that she would still go.",
+  ask:"a pair of commas",n:2},
+ {k:"comma",sent:"One of the world's most interesting plants|,| the Venus flytrap|,| catches its prey.",
+  ask:"a pair of commas",n:2},
+ {k:"brackets",sent:"Pepper |(|a black cat from York|)| hid in the back of the car.",
+  ask:"a pair of brackets",n:2},
+ {k:"brackets",sent:"The players |(|both former world champions|)| waited at the side.",
+  ask:"a pair of brackets",n:2},
+ {k:"dash",sent:"I must repair my backpack| \u2013| the zip is broken.",ask:"a dash",n:1},
+ {k:"dash",sent:"My fruit salad will include strawberries and grapes| \u2013| they're delicious.",ask:"a dash",n:1},
+ {k:"semicolon",sent:"We have been learning about the Vikings|;| they were a fascinating civilisation.",
+  ask:"a semi-colon",n:1},
+ {k:"semicolon",sent:"It was raining heavily|;| she had lost her umbrella.",ask:"a semi-colon",n:1},
+ {k:"colon",sent:"We saw various animals on our walk|:| badgers, foxes and an owl.",ask:"a colon",n:1},
+ {k:"colon",sent:"Plants cannot live without three things|:| light, water and nutrients.",ask:"a colon",n:1},
+ {k:"hyphen",sent:"We bought a ready|-|made pasta sauce.",ask:"a hyphen",n:1},
+ {k:"hyphen",sent:"There was a build|-|up of litter around the bins.",ask:"a hyphen",n:1},
+ {k:"comma",sent:"We lifted the log and found worms|,| woodlice|,| snails and slugs.",
+  ask:"the commas in the list",n:2},
+];
+/* Each row carries its own four options, written out. Generating the wrong
+   ones by string surgery produced duplicates — an apostrophe question with two
+   identical choices teaches nothing and cannot be answered. */
+const APOS=[
+ {q:"one car has a horn", a:"The car's horn beeps loudly.",
+  w:["The cars horn beeps loudly.","The cars' horn beeps loudly.","The car horn's beeps loudly."]},
+ {q:"more than one teacher shares the room", a:"The teachers' staffroom was full of books.",
+  w:["The teachers staffroom was full of books.","The teacher's staffroom was full of books.","The teachers's staffroom was full of books."]},
+ {q:"one sister owns the bike", a:"My sister's bike is red.",
+  w:["My sisters bike is red.","My sisters' bike is red.","My sister bike's is red."]},
+ {q:"the coats belong to the children", a:"The children's coats are wet.",
+  w:["The childrens coats are wet.","The childrens' coats are wet.","The children coats' are wet."]},
+ {q:"two contractions", a:"Tom's one of those boys who's always happy to help.",
+  w:["Toms one of those boys whos always happy to help.","Tom's one of those boys whose always happy to help.","Toms' one of those boys who's always happy to help."]},
+ {q:"the dog belongs to James", a:"James's dog barked.",
+  w:["James dog barked.","Jame's dog barked.","Jamess' dog barked."]},
+];
+const CONTR=[["do not","don't"],["she will","she'll"],["cannot","can't"],["we are","we're"],
+ ["it is","it's"],["they have","they've"],["nobody is","nobody's"],["will not","won't"],
+ ["I am","I'm"],["should have","should've"]];
+const FUNC=[["How I hate tidying my bedroom","exclamation"],["Your bedroom is always neat","statement"],
+ ["Help me tidy my bedroom","command"],["Are you coming to the film night","question"],
+ ["What a brilliant song this is","exclamation"],["Watch where you're going","command"],
+ ["We watched the game together","statement"],["Do you know when it starts","question"],
+ ["Hold the handrail to keep steady","command"],["What a shame you can't come","exclamation"]];
+const STD=[["We |was / were| going on a school trip.","were"],
+ ["The musicians |did / done| a sound check.","did"],
+ ["I am not as good at |them / those| tricks as Jay is.","those"],
+ ["She |doesn't / don't| like mushrooms.","doesn't"],
+ ["We |saw / seen| the film last week.","saw"],
+ ["He |could have / could of| helped us.","could have"]];
+const FORMAL=[["ask","request"],["think about","consider"],["money","funds"],["buy","purchase"],
+ ["set up","establish"],["get","obtain"],["find out","discover"],["tell","inform"],
+ ["put off","postpone"],["let","permit"]];
+const CLAUSE=[["I walked to school |as we live on the same road|.","subordinate"],
+ ["|Before we entered the classroom|, we greeted our friends.","subordinate"],
+ ["|Hazel uses a wheelchair| so we went up the ramp.","main"],
+ ["My uncle, |who lives on a farm|, is going to plant potatoes.","relative"],
+ ["The wheel, |which first appeared 5000 years ago|, changed everything.","relative"],
+ ["|The beautiful grey elephants| walked slowly through the forest.","noun phrase"]];
+const TENSE=[["Oliver |feel| proud when he |collect| his medal.",["feels","collects"],"present"],
+ ["Yesterday she |walk| home and |open| the door.",["walked","opened"],"past"],
+ ["I |bring| my violin to school last week.",["brought"],"past"],
+ ["While we |talk| to our friend, his phone started ringing.",["were talking"],"past progressive"],
+ ["I |eat| breakfast before I left.",["had eaten"],"past perfect"],
+ ["The plane |fly| high above the clouds.",["flies"],"present"]];
+const MODAL=[["I |must| be at school early tomorrow.","certain"],
+ ["They |might| walk home from the station.","possible"],
+ ["She |will| finish the book tonight.","certain"],
+ ["We |could| go to the beach if it stays dry.","possible"],
+ ["He |should| apologise for what he said.","expected"]];
+const VOICE=[["Pollution is harming the trees.","The trees are being harmed by pollution.","active"],
+ ["The mug was broken by Rabia.","Rabia broke the mug.","passive"],
+ ["Everyone enjoyed the meal.","The meal was enjoyed by everyone.","active"],
+ ["The treasure was stolen.","Someone stole the treasure.","passive"],
+ ["The council maintain the local park.","The local park is maintained by the council.","active"]];
+/* Paper 2 spelling: the real content codes, with words in the style of the papers */
+const SPELL=[
+ {c:"S38",r:"adding suffixes to longer words",w:[["rewarded","We were ___ for our hard work."],
+   ["developed","After a few days, the seeds ___ shoots."],["examiner","The ___ was strict but fair."],
+   ["differed","The second experiment ___ from the first."],["replacing","The school is ___ its minibus."]]},
+ {c:"S41",r:"prefixes",w:[["impossible","The joke was so funny it was ___ not to laugh."],
+   ["increase","Working hard will ___ our chance of success."],["disappointed","Ava was ___ to miss the trip."],
+   ["immature","His behaviour was rather ___."]]},
+ {c:"S43",r:"the suffix -ly",w:[["confidently","The goalkeeper defended ___ during the match."],
+   ["angrily","My sister stomped ___ up the stairs."],["frequently","We ___ go to the beach in summer."]]},
+ {c:"S46",r:"the suffix -ous",w:[["hazardous","The broken pavement was quite ___."],
+   ["famous","We met a ___ writer."],["jealousy","I hid my ___ when my friend won."]]},
+ {c:"S47",r:"endings that sound like /shun/",w:[["session","The afternoon ___ will start at 2 o'clock."],
+   ["suggestion","I have a ___ to your problem."],["solution","I have a ___ to your problem."],
+   ["registration","The children were asked to be quiet during ___."]]},
+ {c:"S56",r:"words ending -able and -ible",w:[["probably","I will ___ go to the museum on Saturday."],
+   ["affordable","The new phone is lightweight and ___."],["memorable","Sports day was a ___ event."]]},
+ {c:"S60",r:"silent letters",w:[["knitting","I've been ___ a jumper."],["island","The swans nested on an ___ in the lake."],
+   ["knight","There was a brave ___ in the story."]]},
+ {c:"S61",r:"homophones",w:[["four","We used plain ___ to make bread."],["through","The children walked home ___ the park."],
+   ["passed","They ___ a bridge on their way to school."],["queue","We waited in the ___ to buy tickets."]]},
+ {c:"S53",r:"endings like -cious and -tious",w:[["suspicious","The cat was ___ of the new food."],
+   ["nutritious","The cook served a ___ meal."],["delicious","The meal was ___."]]},
+ {c:"S54",r:"endings like -tial and -cial",w:[["potential","My coach says I have a lot of ___."],
+   ["residential","The guide showed us the ___ dining room."],["social","It is important to stay safe on ___ media."]]},
+ {c:"S55",r:"-ant, -ance, -ent, -ence",w:[["elegant","The silver necklace was ___."],
+   ["reluctance","After some ___, Dad agreed we could stay up."],["confidence","He played with great ___."]]},
+ {c:"S44",r:"endings sounding like /zher/ or /cher/",w:[["pleasure","It would be my ___ to help you."],
+   ["adventure","I enjoy reading ___ stories."],["texture","The linen fabric had a rough ___."]]},
+ {c:"S48",r:"the /k/ sound spelt ch",w:[["anchor","The ship was held by an ___."],["chaos","There was ___ because of the snow."]]},
+ {c:"S49",r:"the /sh/ sound spelt ch",w:[["machines","The factory was full of ___."],["chef","The ___ prepared the meal."]]},
+ {c:"S50",r:"-gue and -que endings",w:[["antique","The necklace was a priceless ___."],
+   ["league","We were delighted when our team won the ___."],["plaque","Brushing your teeth removes ___."]]},
+ {c:"S52",r:"the /ay/ sound spelt ei, eigh or ey",w:[["veins","Your ___ carry blood to your heart."],
+   ["reindeer","Cold environments are the habitat for ___."]]},
+ {c:"S59",r:"words containing ough",w:[["rough","I did a ___ sketch before painting."],
+   ["through","We walked ___ the tunnel."],["thought","I ___ about it all night."]]},
+ {c:"S40",r:"the /u/ sound spelt ou",w:[["young","Our dogs are ___ and full of energy."],
+   ["flourish","The plants will ___ on the sunny windowsill."],["trouble","We were in ___ for being late."]]},
+];
+
+const GEN={
+ wordClass(r,lvl,cls){
+  const c=cls||pick(r,["noun","verb","adjective","adverb","pronoun","determiner","preposition","conjunction"]);
+  const [sent,ans]=pick(r,CLASSES[c]);
+  return {ask:"tapWords", sent:sent, a:ans, lab:c, hint:"Tap every "+c+"."};
+ },
+ wcName(r){
+  const c=pick(r,["noun","verb","adjective","adverb","pronoun","determiner","preposition","conjunction"]);
+  const [sent,ans]=pick(r,CLASSES[c]);
+  const w=ans[0];
+  const opts=shuffle(r,["noun","verb","adjective","adverb","pronoun","determiner","preposition","conjunction"]).filter(x=>x!==c).slice(0,3);
+  return {ask:"choose", sent:sent.replace(/\|/g,""), q:"What word class is <b>"+w+"</b>?",
+          opts:shuffle(r,opts.concat([c])), a:c};
+ },
+ punct(r,lvl){
+  const p=pick(r,PUNCT);
+  return {ask:"tapGaps", sent:p.sent, hint:"Where does "+p.ask+" go? Tap the place.", a:p.n, lab:p.k};
+ },
+ apostrophe(r){
+  const row=pick(r,APOS);
+  return {ask:"choose", q:"Which is correct? <i>("+row.q+")</i>",
+          opts:shuffle(r,[row.a].concat(row.w)), a:row.a};
+ },
+ contract(r){
+  const [full,short]=pick(r,CONTR);
+  return {ask:"type", q:"Write the contracted form of <b>"+full+"</b>", a:short, hint:"Remember the apostrophe."};
+ },
+ func(r){
+  const [s,f]=pick(r,FUNC);
+  return {ask:"choose", sent:s, q:"What kind of sentence is this?",
+          opts:shuffle(r,["statement","question","command","exclamation"]), a:f};
+ },
+ syn(r){
+  const row=pick(r,SYN);
+  return {ask:"choose", q:"Which word means the same as <b>"+row[0]+"</b>?",
+          opts:shuffle(r,row.slice(1)), a:row[1]};
+ },
+ ant(r){
+  const row=pick(r,ANT);
+  return {ask:"choose", q:"Which word means the opposite of <b>"+row[0]+"</b>?",
+          opts:shuffle(r,row.slice(1)), a:row[1]};
+ },
+ prefix(r){
+  const [p,w,full]=pick(r,PREFIX);
+  return {ask:"type", q:"Add a prefix to <b>"+w+"</b> to make it mean the opposite or undo it.",
+          a:full, hint:"Write the whole word."};
+ },
+ suffix(r){
+  const [w,s,full]=pick(r,SUFFIX);
+  return {ask:"type", q:"Add the suffix <b>"+s+"</b> to <b>"+w+"</b>.", a:full, hint:"Watch the spelling."};
+ },
+ standard(r){
+  const [sent,a]=pick(r,STD);
+  const both=sent.match(/\|([^|]+)\|/)[1].split(" / ");
+  return {ask:"choose", sent:sent.replace(/\|[^|]+\|/,"______"),
+          q:"Which is Standard English?", opts:shuffle(r,both), a:a};
+ },
+ formal(r){
+  const [inf,form]=pick(r,FORMAL);
+  const others=shuffle(r,FORMAL.filter(x=>x[1]!==form)).slice(0,3).map(x=>x[1]);
+  return {ask:"choose", q:"Which is the more formal word for <b>"+inf+"</b>?",
+          opts:shuffle(r,others.concat([form])), a:form};
+ },
+ clause(r){
+  const [sent,kind]=pick(r,CLAUSE);
+  return {ask:"choose", sent:sent.replace(/\|/g,""), q:"The underlined part is a\u2026",
+          opts:shuffle(r,["main clause","subordinate clause","relative clause","noun phrase"]),
+          a:kind==="main"?"main clause":kind==="subordinate"?"subordinate clause":
+            kind==="relative"?"relative clause":"noun phrase", marked:sent};
+ },
+ tense(r){
+  const [sent,ans,name]=pick(r,TENSE);
+  const w=sent.match(/\|([^|]+)\|/)[1];
+  return {ask:"type", sent:sent.replace(/\|([^|]+)\|/g,"______"),
+          q:"Put <b>"+w+"</b> into the "+name+" tense.", a:ans[0], hint:"One word, or two if it needs a helper."};
+ },
+ modal(r){
+  const [sent,deg]=pick(r,MODAL);
+  const w=sent.match(/\|([^|]+)\|/)[1];
+  return {ask:"choose", sent:sent.replace(/\|/g,""),
+          q:"What does <b>"+w+"</b> show?", opts:shuffle(r,["certain","possible","expected"]), a:deg};
+ },
+ voice(r){
+  const [a,b,kind]=pick(r,VOICE);
+  return {ask:"choose", sent:a, q:"Is this sentence active or passive?",
+          opts:["active","passive"], a:kind};
+ },
+ spell(r,lvl,code){
+  const set=code?SPELL.filter(s=>s.c===code)[0]:pick(r,SPELL);
+  const [w,sent]=pick(r,set.w);
+  return {ask:"type", sent:sent, q:"Write the missing word.", a:w,
+          hint:set.r, clip:"spell/"+w+".mp3"};
+ },
+};
+
+
+/* ================= the eight topics =================
+   Weighted by the whole 70-mark test across 2024, 2025 and 2026 \u2014 not by
+   Paper 1 alone, which is what hid the biggest finding: spelling is 20 of the
+   70 marks, more than punctuation. It gets the most subtopics, not the fewest. */
+const CAMPS=[
+ {id:"t0", em:"\u2712\ufe0f", en:"Spelling", fr:"Orthographe",
+  sub_en:"20 of the 70 marks \u2014 the biggest single part",
+  sub_fr:"20 des 70 points \u2014 la plus grande partie", stops:[
+  {g:"spell",arg:"S38",n:10,code:"S38",en:"Adding endings to longer words",fr:"Ajouter des terminaisons",
+   sub_en:"rewarded, developed, examiner",sub_fr:"rewarded, developed, examiner"},
+  {g:"spell",arg:"S41",n:8,code:"S41",en:"Prefixes",fr:"Pr\u00e9fixes",sub_en:"impossible, increase",sub_fr:"impossible, increase"},
+  {g:"spell",arg:"S47",n:10,code:"S47",en:"Endings that sound like -shun",fr:"Terminaisons en -shun",
+   sub_en:"session, solution, registration",sub_fr:"session, solution"},
+  {g:"spell",arg:"S56",n:8,code:"S56",en:"-able and -ible",fr:"-able et -ible",sub_en:"probably, affordable",sub_fr:"probably, affordable"},
+  {g:"spell",arg:"S60",n:8,code:"S60",en:"Silent letters",fr:"Lettres muettes",sub_en:"knitting, island, knight",sub_fr:"knitting, island"},
+  {g:"spell",arg:"S61",n:10,code:"S61",en:"Homophones",fr:"Homophones",sub_en:"four, through, passed",sub_fr:"four, through, passed"},
+  {g:"spell",arg:"S53",n:8,code:"S53",en:"-cious and -tious",fr:"-cious et -tious",sub_en:"suspicious, nutritious",sub_fr:"suspicious"},
+  {g:"spell",arg:"S54",n:8,code:"S54",en:"-tial and -cial",fr:"-tial et -cial",sub_en:"potential, social",sub_fr:"potential, social"},
+  {g:"spell",arg:"S55",n:8,code:"S55",en:"-ant, -ance, -ent, -ence",fr:"-ant, -ance, -ent, -ence",sub_en:"elegant, reluctance",sub_fr:"elegant"},
+  {g:"spell",arg:"S59",n:8,code:"S59",en:"Words with ough",fr:"Les mots en ough",sub_en:"rough, through, thought",sub_fr:"rough, through"},
+  {g:"spell",arg:null,n:14,code:"S38\u2013S61",en:"All of them mixed",fr:"Tout m\u00e9lang\u00e9",sub_en:"the way the real paper comes",sub_fr:"comme au vrai test"},
+ ]},
+ {id:"t1", em:"\u270f\ufe0f", en:"Punctuation", fr:"Ponctuation",
+  sub_en:"14 marks \u2014 the biggest part of Paper 1",
+  sub_fr:"14 points \u2014 la plus grande partie", stops:[
+  {g:"punct",n:12,code:"G5.9",en:"Commas and brackets",fr:"Virgules et parenth\u00e8ses",
+   sub_en:"asked 8 times in three years",sub_fr:"8 fois en trois ans"},
+  {g:"punct",n:10,code:"G5.11 / G5.12",en:"Semi-colons and dashes",fr:"Points-virgules et tirets",
+   sub_en:"joining two whole sentences",sub_fr:"relier deux phrases"},
+  {g:"punct",n:8,code:"G5.10",en:"Colons",fr:"Deux-points",sub_en:"before a list or an explanation",sub_fr:"avant une liste"},
+  {g:"punct",n:8,code:"G5.13",en:"Hyphens",fr:"Traits d'union",sub_en:"ready-made, build-up",sub_fr:"ready-made"},
+  {g:"apostrophe",n:12,code:"G5.8",en:"Apostrophes",fr:"Apostrophes",sub_en:"owning things, and missing letters",sub_fr:"possession et lettres manquantes"},
+  {g:"contract",n:10,code:"G5.8",en:"Shortened words",fr:"Formes contract\u00e9es",sub_en:"don't, she'll, won't",sub_fr:"don't, she'll"},
+ ]},
+ {id:"t2", em:"\u{1f524}", en:"Word classes", fr:"Classes de mots",
+  sub_en:"13 marks \u2014 knowing what each word is doing",
+  sub_fr:"13 points \u2014 le r\u00f4le de chaque mot", stops:[
+  {g:"wordClass",arg:"noun",n:10,code:"G1.2",en:"Nouns",fr:"Noms",sub_en:"asked 6 times in three years",sub_fr:"6 fois en trois ans"},
+  {g:"wordClass",arg:"verb",n:10,code:"G1.1",en:"Verbs",fr:"Verbes",sub_en:"asked 5 times",sub_fr:"5 fois"},
+  {g:"wordClass",arg:"adjective",n:8,code:"G1.3",en:"Adjectives",fr:"Adjectifs",sub_en:"describing a noun",sub_fr:"d\u00e9crire un nom"},
+  {g:"wordClass",arg:"adverb",n:8,code:"G1.6",en:"Adverbs",fr:"Adverbes",sub_en:"how, when, where",sub_fr:"comment, quand, o\u00f9"},
+  {g:"wordClass",arg:"pronoun",n:8,code:"G1.5",en:"Pronouns",fr:"Pronoms",sub_en:"she, them, ours",sub_fr:"she, them, ours"},
+  {g:"wordClass",arg:"determiner",n:8,code:"G1.8",en:"Determiners",fr:"D\u00e9terminants",sub_en:"the, a, my, those",sub_fr:"the, a, my"},
+  {g:"wordClass",arg:"preposition",n:8,code:"G1.7",en:"Prepositions",fr:"Pr\u00e9positions",sub_en:"under, through, beside",sub_fr:"under, through"},
+  {g:"wordClass",arg:"conjunction",n:8,code:"G1.4",en:"Conjunctions",fr:"Conjonctions",sub_en:"because, although, but",sub_fr:"because, although"},
+  {g:"wcName",n:12,code:"G1.1\u2013G1.9",en:"Name that word",fr:"Nomme le mot",sub_en:"all eight mixed up",sub_fr:"les huit m\u00e9lang\u00e9es"},
+ ]},
+ {id:"t3", em:"\u23f3", en:"Verbs and tense", fr:"Verbes et temps",
+  sub_en:"6 marks \u2014 forms, tense and staying consistent",
+  sub_fr:"6 points \u2014 formes et temps", stops:[
+  {g:"tense",n:12,code:"G4.1",en:"Getting the tense right",fr:"Le bon temps",sub_en:"past, present, progressive, perfect",sub_fr:"pass\u00e9, pr\u00e9sent"},
+  {g:"voice",n:10,code:"G4.4",en:"Active and passive",fr:"Actif et passif",sub_en:"asked 6 times in three years",sub_fr:"6 fois en trois ans"},
+  {g:"modal",n:8,code:"G4.1c",en:"Modal verbs",fr:"Verbes modaux",sub_en:"must, might, could, should",sub_fr:"must, might, could"},
+ ]},
+ {id:"t4", em:"\u{1f517}", en:"Clauses and phrases", fr:"Propositions et groupes",
+  sub_en:"5 marks \u2014 how sentences are put together",
+  sub_fr:"5 points \u2014 la construction des phrases", stops:[
+  {g:"clause",n:12,code:"G3.1 / G3.4",en:"Main, subordinate, relative",fr:"Principale, subordonn\u00e9e, relative",
+   sub_en:"asked 13 times in three years",sub_fr:"13 fois en trois ans"},
+ ]},
+ {id:"t5", em:"\u{1f4d6}", en:"Vocabulary", fr:"Vocabulaire",
+  sub_en:"5 marks \u2014 word meanings and word building",
+  sub_fr:"5 points \u2014 sens et construction des mots", stops:[
+  {g:"syn",n:10,code:"G6.1",en:"Words that mean the same",fr:"Synonymes",sub_en:"the most-asked code of all",sub_fr:"le code le plus demand\u00e9"},
+  {g:"ant",n:8,code:"G6.1",en:"Words that mean the opposite",fr:"Antonymes",sub_en:"rough and smooth",sub_fr:"rough / smooth"},
+  {g:"prefix",n:10,code:"G6.2",en:"Prefixes",fr:"Pr\u00e9fixes",sub_en:"im-, dis-, re-, over-",sub_fr:"im-, dis-, re-"},
+  {g:"suffix",n:10,code:"G6.3",en:"Suffixes",fr:"Suffixes",sub_en:"-ment, -ous, -ness, -ise",sub_fr:"-ment, -ous"},
+ ]},
+ {id:"t6", em:"\u{1f3a9}", en:"Standard English", fr:"Anglais standard",
+  sub_en:"3 marks \u2014 and how formal to be",
+  sub_fr:"3 points \u2014 et le niveau de langue", stops:[
+  {g:"standard",n:10,code:"G7.1",en:"We were, not we was",fr:"La forme correcte",sub_en:"the ones that catch people out",sub_fr:"les pi\u00e8ges classiques"},
+  {g:"formal",n:10,code:"G7.2",en:"Formal and informal",fr:"Formel et informel",sub_en:"ask or request, buy or purchase",sub_fr:"ask / request"},
+ ]},
+ {id:"t7", em:"\u2753", en:"Kinds of sentence", fr:"Types de phrases",
+  sub_en:"3 marks \u2014 statement, question, command, exclamation",
+  sub_fr:"3 points \u2014 les quatre types", stops:[
+  {g:"func",n:12,code:"G2.1\u2013G2.4",en:"Which kind is it?",fr:"Quel type ?",
+   sub_en:"and the punctuation that goes with each",sub_fr:"et la ponctuation qui va avec"},
+ ]},
+];
+
+
+const TEACH={
+"spell": {
+ story:[
+  {em:"📻", en:"You hear a word, and a sentence with a gap. You write the word in.",
+   fr:"Tu entends un mot, et une phrase avec un trou. Tu écris le mot."},
+  {em:"🧩", en:"Twenty words, twenty marks. Each one belongs to a spelling pattern, and the patterns come back every year.",
+   fr:"Vingt mots, vingt points. Chacun suit un motif, et les motifs reviennent chaque année."}],
+ show:"the /shun/ ending",
+ steps:[
+  {line:"session, solution, station", en:"Say the word slowly and listen for the pattern at the end.",
+   fr:"Dis le mot lentement et écoute le motif à la fin.",
+   why_en:"Most spelling marks are lost by writing what a word sounds like. The pattern tells you more than the sound.",
+   why_fr:"On perd la plupart des points en écrivant ce qu'on entend. Le motif en dit plus que le son."},
+  {line:"-tion, -sion, -ssion, -cian", en:"Four spellings, one sound. Which one depends on the word it came from.",
+   fr:"Quatre orthographes, un seul son. Cela dépend du mot d'origine.",
+   why_en:"solve becomes solution, permit becomes permission. Find the word underneath.",
+   why_fr:"solve donne solution, permit donne permission. Cherche le mot d'origine."},
+  {line:"write it, then read it back", en:"Check it looks right, not just sounds right.",
+   fr:"Vérifie que ça a l'air juste, pas seulement que ça sonne juste.",
+   why_en:"You have seen these words in books hundreds of times. Trust your eye.",
+   why_fr:"Tu as vu ces mots des centaines de fois. Fais confiance à ton œil."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"Write: sug___ (an idea you offer)", ask_fr:"Écris : sug___ (une idée qu'on propose)", a:"suggestion"},
+   {ask_en:"Write: solu___ (an answer to a problem)", ask_fr:"Écris : solu___ (une réponse à un problème)", a:"solution"},
+   {ask_en:"Write: regist___ (taking the register)", ask_fr:"Écris : regist___ (l'appel)", a:"registration"},
+ ]}
+},
+
+"punct": {
+ story:[
+  {em:"🚦", en:"Punctuation is not decoration. It tells the reader where to stop, where to pause, and what belongs together.",
+   fr:"La ponctuation n'est pas décorative. Elle dit où s'arrêter, où faire une pause, et ce qui va ensemble."},
+  {em:"✌️", en:"Brackets and paired commas always come in twos. If you have put one in, you owe the sentence another.",
+   fr:"Les parenthèses et les virgules doubles vont par deux. Si tu en mets une, la phrase en attend une autre."}],
+ show:"She decided, although she was tired, that she would go.",
+ steps:[
+  {line:"find the extra bit", en:"Read the sentence without the middle part. Does it still work?",
+   fr:"Lis la phrase sans la partie du milieu. Est-ce qu'elle tient encore ?",
+   why_en:"If it still works, that middle part is extra information and needs a pair of marks around it.",
+   why_fr:"Si elle tient, cette partie est une information supplémentaire et demande une paire de signes."},
+  {line:"put a mark at each end", en:"One before the extra bit, one after.",
+   fr:"Un signe avant, un signe après.",
+   why_en:"One comma on its own is the commonest punctuation mistake there is. They come in pairs.",
+   why_fr:"Une seule virgule est l'erreur la plus courante. Elles vont par paires."},
+  {line:"read it aloud", en:"The pause should fall where the marks are.",
+   fr:"La pause doit tomber là où sont les signes.",
+   why_en:"If you would not pause there when speaking, the mark is probably in the wrong place.",
+   why_fr:"Si tu ne ferais pas de pause là en parlant, le signe est sans doute mal placé."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"How many commas does an interruption need? Type the number", ask_fr:"Combien de virgules pour une incise ? Tape le nombre", a:"2"},
+   {ask_en:"How many brackets? Type the number", ask_fr:"Combien de parenthèses ? Tape le nombre", a:"2"},
+   {ask_en:"How many semi-colons join two sentences? Type the number", ask_fr:"Combien de points-virgules relient deux phrases ?", a:"1"},
+ ]}
+},
+
+"apostrophe": {
+ story:[
+  {em:"🐕", en:"Two jobs, one mark. An apostrophe either shows that something belongs to someone, or that letters are missing.",
+   fr:"Deux rôles, un seul signe. L'apostrophe montre la possession, ou des lettres manquantes."},
+  {em:"👥", en:"The dog's bowl is one dog. The dogs' bowl is more than one dog. That single mark changes how many dogs there are.",
+   fr:"The dog's bowl : un chien. The dogs' bowl : plusieurs. Ce petit signe change le nombre de chiens."}],
+ show:"the car's horn",
+ steps:[
+  {line:"who owns it?", en:"Work out the owner first, before you write anything.",
+   fr:"Trouve d'abord le propriétaire, avant d'écrire quoi que ce soit.",
+   why_en:"The apostrophe goes straight after the owner, and the owner is not always what you expect.",
+   why_fr:"L'apostrophe suit le propriétaire, et ce n'est pas toujours celui qu'on croit."},
+  {line:"one owner: 's", en:"One car, so the apostrophe goes before the s: the car's horn.",
+   fr:"Une voiture : l'apostrophe avant le s.",
+   why_en:"You are not making it plural. You are saying it belongs to one thing.",
+   why_fr:"Tu ne mets pas au pluriel. Tu dis que ça appartient à une chose."},
+  {line:"more than one: s'", en:"Several teachers, so the apostrophe goes after the s: the teachers' room.",
+   fr:"Plusieurs professeurs : l'apostrophe après le s.",
+   why_en:"Say the owner out loud first. If it already ends in s, the apostrophe goes after it.",
+   why_fr:"Dis d'abord le propriétaire. S'il finit déjà par s, l'apostrophe vient après."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"One girl owns a bag. Write: the g___ bag", ask_fr:"Une fille, un sac. Écris : the g___ bag", a:"girl's"},
+   {ask_en:"Three girls share a room. Write: the g___ room", ask_fr:"Trois filles, une chambre. Écris : the g___ room", a:"girls'"},
+   {ask_en:"Write the short form of 'it is'", ask_fr:"Écris la forme courte de « it is »", a:"it's"},
+ ]}
+},
+
+"contract": {
+ story:[
+  {em:"✂️", en:"Two words squeezed into one, with an apostrophe standing where the missing letters used to be.",
+   fr:"Deux mots serrés en un, avec une apostrophe à la place des lettres manquantes."},
+  {em:"📍", en:"do not becomes don't. The apostrophe sits exactly where the o was, not where the gap between words was.",
+   fr:"do not devient don't. L'apostrophe est là où était le o, pas là où était l'espace."}],
+ show:"do not → don't",
+ steps:[
+  {line:"find the missing letters", en:"In do not, the letter that disappears is the o in not.",
+   fr:"Dans do not, la lettre qui disparaît est le o de not.",
+   why_en:"Knowing which letter went missing tells you exactly where the apostrophe goes.",
+   why_fr:"Savoir quelle lettre a disparu dit exactement où va l'apostrophe."},
+  {line:"apostrophe in its place", en:"don't, not do'nt.",
+   fr:"don't, pas do'nt.",
+   why_en:"The apostrophe marks the hole, not the join. That is the whole rule.",
+   why_fr:"L'apostrophe marque le trou, pas la jointure. C'est toute la règle."},
+  {line:"the odd ones", en:"will not becomes won't, which changes more than it should.",
+   fr:"will not devient won't, qui change plus que prévu.",
+   why_en:"There are only a few like that. Learn won't and you have learned most of them.",
+   why_fr:"Il n'y en a que quelques-unes. Apprends won't et tu les as presque toutes."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"Write the short form of 'cannot'", ask_fr:"Écris la forme courte de « cannot »", a:"can't"},
+   {ask_en:"Write the short form of 'they have'", ask_fr:"Écris la forme courte de « they have »", a:"they've"},
+   {ask_en:"Write the short form of 'will not'", ask_fr:"Écris la forme courte de « will not »", a:"won't"},
+ ]}
+},
+
+"wordClass": {
+ story:[
+  {em:"🧰", en:"Every word in a sentence has a job. The word class is the name of the job, not the name of the word.",
+   fr:"Chaque mot a un rôle. La classe du mot, c'est le nom du rôle, pas du mot."},
+  {em:"🔁", en:"The same word can do different jobs. 'He folds the letter' — verb. 'The letter had folds' — noun.",
+   fr:"Un même mot peut avoir plusieurs rôles. « He folds » : verbe. « had folds » : nom."}],
+ show:"The crumbling castle stood on the hill.",
+ steps:[
+  {line:"what is it doing here?", en:"Ask what the word is doing in this sentence, not what it usually is.",
+   fr:"Demande ce que le mot fait dans cette phrase, pas ce qu'il est d'habitude.",
+   why_en:"This is the trick the test uses most: a word you know as one class doing another job.",
+   why_fr:"C'est le piège le plus fréquent du test : un mot connu qui change de rôle."},
+  {line:"nouns name, verbs do", en:"castle and hill name things. stood is what happened.",
+   fr:"castle et hill nomment des choses. stood est ce qui s'est passé.",
+   why_en:"If you can put 'the' in front of it, it is probably a noun.",
+   why_fr:"Si tu peux mettre « the » devant, c'est sans doute un nom."},
+  {line:"adjectives and adverbs describe", en:"crumbling describes the castle. An adverb would describe the standing.",
+   fr:"crumbling décrit le château. Un adverbe décrirait l'action.",
+   why_en:"Adjectives describe things, adverbs describe actions. That is the difference in one line.",
+   why_fr:"Les adjectifs décrivent des choses, les adverbes des actions. Voilà la différence."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"In 'the tiny bird sang', which word is the noun?", ask_fr:"Dans « the tiny bird sang », quel est le nom ?", a:"bird"},
+   {ask_en:"Which word is the verb?", ask_fr:"Quel est le verbe ?", a:"sang"},
+   {ask_en:"Which word is the adjective?", ask_fr:"Quel est l'adjectif ?", a:"tiny"},
+ ]}
+},
+
+"wcName": {
+ story:[
+  {em:"🏷️", en:"Eight names to know: noun, verb, adjective, adverb, pronoun, determiner, preposition, conjunction.",
+   fr:"Huit noms à connaître : nom, verbe, adjectif, adverbe, pronom, déterminant, préposition, conjonction."},
+  {em:"🤔", en:"The test does not ask you to use them. It asks you to name them, which is harder and worth more.",
+   fr:"Le test ne demande pas de les utiliser, mais de les nommer — plus difficile et plus payant."}],
+ show:"naming the eight",
+ steps:[
+  {line:"determiners come before nouns", en:"the, a, my, those, three — they point at a noun.",
+   fr:"the, a, my, those, three — ils désignent un nom.",
+   why_en:"If it sits in front of a noun and narrows down which one, it is a determiner.",
+   why_fr:"S'il précède un nom et précise lequel, c'est un déterminant."},
+  {line:"prepositions place things", en:"under, through, beside, after — where or when.",
+   fr:"under, through, beside, after — le lieu ou le moment.",
+   why_en:"Most prepositions fit the sentence 'the cat went ___ the box'.",
+   why_fr:"La plupart tiennent dans « the cat went ___ the box »."},
+  {line:"conjunctions join", en:"and, but, because, although — they hold two parts together.",
+   fr:"and, but, because, although — ils relient deux parties.",
+   why_en:"If removing it leaves two separate sentences, it was a conjunction.",
+   why_fr:"Si l'enlever laisse deux phrases séparées, c'était une conjonction."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"What class is 'those' in 'those children'?", ask_fr:"Quelle classe pour « those » ?", a:"determiner"},
+   {ask_en:"What class is 'beside' in 'beside the door'?", ask_fr:"Quelle classe pour « beside » ?", a:"preposition"},
+   {ask_en:"What class is 'although' in 'although she was tired'?", ask_fr:"Quelle classe pour « although » ?", a:"conjunction"},
+ ]}
+},
+
+"tense": {
+ story:[
+  {em:"🕰️", en:"Tense tells the reader when something happened. Get it wrong halfway through and the sentence trips.",
+   fr:"Le temps dit quand ça s'est passé. Le changer en cours de phrase la fait trébucher."},
+  {em:"🔗", en:"The test mostly checks consistency: if you start in the past, you finish in the past.",
+   fr:"Le test vérifie surtout la cohérence : si tu commences au passé, tu finis au passé."}],
+ show:"Yesterday she walked home and opened the door.",
+ steps:[
+  {line:"find the time word", en:"Yesterday tells you this is the past before you read the verbs.",
+   fr:"Yesterday dit que c'est du passé avant même de lire les verbes.",
+   why_en:"There is almost always a clue like this. Find it first and the verbs follow.",
+   why_fr:"Il y a presque toujours un indice. Trouve-le et les verbes suivent."},
+  {line:"all the verbs must match", en:"walked and opened, not walked and opens.",
+   fr:"walked et opened, pas walked et opens.",
+   why_en:"One verb in the wrong tense loses the mark even if the rest are right.",
+   why_fr:"Un seul verbe au mauvais temps fait perdre le point."},
+  {line:"helpers change the tense too", en:"was walking, had eaten — the helper is part of the verb.",
+   fr:"was walking, had eaten — l'auxiliaire fait partie du verbe.",
+   why_en:"Progressive needs was or were. Perfect needs had or have. Learn those two pairs.",
+   why_fr:"Le progressif demande was/were. Le parfait demande had/have."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"Yesterday I ___ (walk) to school", ask_fr:"Hier je ___ (walk) à l'école", a:"walked"},
+   {ask_en:"She ___ (eat) her lunch before she left. Use the past perfect", ask_fr:"Utilise le plus-que-parfait : she ___ (eat)", a:"had eaten"},
+   {ask_en:"While we ___ (talk), his phone rang. Use the past progressive", ask_fr:"Passé progressif : while we ___ (talk)", a:"were talking"},
+ ]}
+},
+
+"voice": {
+ story:[
+  {em:"🎬", en:"Active: who did it comes first. Passive: what it was done to comes first.",
+   fr:"Actif : celui qui fait vient d'abord. Passif : ce qui subit vient d'abord."},
+  {em:"🕵️", en:"Rabia broke the mug — active. The mug was broken by Rabia — passive. Same event, different order.",
+   fr:"Rabia broke the mug — actif. The mug was broken by Rabia — passif. Même fait, autre ordre."}],
+ show:"The mug was broken by Rabia.",
+ steps:[
+  {line:"who or what is first?", en:"If the doer is first, it is active. If the thing done to is first, it is passive.",
+   fr:"Si l'auteur vient en premier, c'est actif. Sinon, c'est passif.",
+   why_en:"That single question answers almost every active-or-passive question in the test.",
+   why_fr:"Cette seule question répond à presque tout dans le test."},
+  {line:"look for was or were plus a verb", en:"was broken, are harmed, is maintained — that shape is passive.",
+   fr:"was broken, are harmed — cette forme est passive.",
+   why_en:"Passive almost always has a form of 'to be' in front of the verb.",
+   why_fr:"Le passif a presque toujours une forme de « to be » devant le verbe."},
+  {line:"the doer can vanish", en:"The treasure was stolen — passive, and nobody says who did it.",
+   fr:"The treasure was stolen — passif, et on ne dit pas qui.",
+   why_en:"That is why the passive gets used: it lets you leave the doer out.",
+   why_fr:"C'est pour ça qu'on l'utilise : il permet d'omettre l'auteur."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"'The meal was enjoyed by everyone' — type active or passive", ask_fr:"Tape active ou passive", a:"passive"},
+   {ask_en:"'Pollution is harming the trees' — active or passive?", ask_fr:"active ou passive ?", a:"active"},
+   {ask_en:"'The park is maintained by the council' — active or passive?", ask_fr:"active ou passive ?", a:"passive"},
+ ]}
+},
+
+"modal": {
+ story:[
+  {em:"🎚️", en:"Modal verbs are a dial for how certain something is. must, will, might, could, should.",
+   fr:"Les verbes modaux règlent le degré de certitude. must, will, might, could, should."},
+  {em:"↔️", en:"They will walk home. They might walk home. One is a fact, the other is a maybe.",
+   fr:"They will walk home. They might walk home. Un fait, ou un peut-être."}],
+ show:"They might walk home.",
+ steps:[
+  {line:"find the modal", en:"It sits just before the main verb.",
+   fr:"Il se place juste avant le verbe principal.",
+   why_en:"must, shall, will, should, would, can, could, may, might — that is the whole list.",
+   why_fr:"must, shall, will, should, would, can, could, may, might — voilà la liste."},
+  {line:"how sure is it?", en:"will and must are certain. might and could are possible.",
+   fr:"will et must : certain. might et could : possible.",
+   why_en:"The test asks you to explain the difference in words, so practise saying it.",
+   why_fr:"Le test demande d'expliquer la différence, alors entraîne-toi à le dire."},
+  {line:"should is different", en:"should is what ought to happen, not what will.",
+   fr:"should, c'est ce qui devrait arriver, pas ce qui arrivera.",
+   why_en:"Expectation, not certainty. That distinction has been asked before.",
+   why_fr:"Attente, pas certitude. Cette distinction a déjà été demandée."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"'I must leave now' — type certain or possible", ask_fr:"Tape certain ou possible", a:"certain"},
+   {ask_en:"'We could go to the beach' — certain or possible?", ask_fr:"certain ou possible ?", a:"possible"},
+   {ask_en:"'She will finish it tonight' — certain or possible?", ask_fr:"certain ou possible ?", a:"certain"},
+ ]}
+},
+
+"clause": {
+ story:[
+  {em:"🧱", en:"A clause is a piece of sentence with its own verb. Most sentences are built from two or more.",
+   fr:"Une proposition est un morceau de phrase avec son propre verbe."},
+  {em:"🏠", en:"A main clause can stand alone. A subordinate clause cannot — it leans on the main one.",
+   fr:"Une principale tient seule. Une subordonnée s'appuie sur elle."}],
+ show:"I walked to school as we live on the same road.",
+ steps:[
+  {line:"cover half and read it", en:"'I walked to school' works alone. That is the main clause.",
+   fr:"« I walked to school » tient seul. C'est la principale.",
+   why_en:"This test works every time and needs nothing memorised.",
+   why_fr:"Ce test marche à tous les coups et ne demande rien à retenir."},
+  {line:"the other half leans", en:"'as we live on the same road' cannot stand alone. Subordinate.",
+   fr:"« as we live on the same road » ne tient pas seul. Subordonnée.",
+   why_en:"The joining word at the front — as, because, although, before — is what makes it lean.",
+   why_fr:"Le mot de liaison au début est ce qui la rend dépendante."},
+  {line:"relative clauses describe a noun", en:"'who lives on a farm' tells you which uncle. It starts with who, which or that.",
+   fr:"« who lives on a farm » précise quel oncle. Elle commence par who, which ou that.",
+   why_en:"A relative clause is a kind of subordinate clause, sitting next to the noun it describes.",
+   why_fr:"Une relative est une subordonnée placée près du nom qu'elle décrit."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"'Because it was raining' — main or subordinate? Type one", ask_fr:"principale ou subordonnée ?", a:"subordinate"},
+   {ask_en:"'The dog barked' — main or subordinate?", ask_fr:"principale ou subordonnée ?", a:"main"},
+   {ask_en:"'which my uncle gave me' — type relative or main", ask_fr:"relative ou principale ?", a:"relative"},
+ ]}
+},
+
+"syn": {
+ story:[
+  {em:"🎨", en:"Synonyms are words that mean nearly the same. Nearly, not exactly — that is why they are useful.",
+   fr:"Les synonymes ont un sens proche. Proche, pas identique."},
+  {em:"📈", en:"This is the most-asked thing in the whole English test. Eight times in three years.",
+   fr:"C'est ce qu'on demande le plus dans tout le test. Huit fois en trois ans."}],
+ show:"vast → enormous",
+ steps:[
+  {line:"put it in the sentence", en:"Swap the word in and see whether the sentence still means the same.",
+   fr:"Remplace le mot et vois si la phrase garde son sens.",
+   why_en:"A synonym has to fit the sentence, not just the dictionary.",
+   why_fr:"Un synonyme doit convenir à la phrase, pas seulement au dictionnaire."},
+  {line:"watch the strength", en:"vast is bigger than big. furious is angrier than annoyed.",
+   fr:"vast est plus grand que big. furious est plus fort que annoyed.",
+   why_en:"The test often offers a word with the right meaning but the wrong strength.",
+   why_fr:"Le test propose souvent un mot au bon sens mais de mauvaise intensité."},
+  {line:"read all four first", en:"One will fit better than the rest.",
+   fr:"Lis les quatre avant de choisir.",
+   why_en:"Choosing the first one that looks right is how these marks get lost.",
+   why_fr:"Choisir le premier qui semble bon fait perdre ces points."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"A synonym for 'rapid'", ask_fr:"Un synonyme de « rapid »", a:"quick"},
+   {ask_en:"A synonym for 'courageous'", ask_fr:"Un synonyme de « courageous »", a:"brave"},
+   {ask_en:"A synonym for 'ancient'", ask_fr:"Un synonyme de « ancient »", a:"very old"},
+ ]}
+},
+
+"ant": {
+ story:[
+  {em:"↕️", en:"Antonyms are opposites. rough and smooth, generous and selfish.",
+   fr:"Les antonymes sont des contraires."},
+  {em:"⚠️", en:"The test puts synonyms among the choices to catch you. Read the question word: same, or opposite?",
+   fr:"Le test glisse des synonymes parmi les choix. Lis bien : même sens, ou contraire ?"}],
+ show:"rough → smooth",
+ steps:[
+  {line:"check what is being asked", en:"Same meaning, or opposite? They look like the same question.",
+   fr:"Même sens, ou contraire ? Les deux questions se ressemblent.",
+   why_en:"This is the trap. Half the wrong answers are synonyms of the word.",
+   why_fr:"C'est le piège. La moitié des mauvaises réponses sont des synonymes."},
+  {line:"find the true opposite", en:"bumpy and coarse are near rough, not opposite to it.",
+   fr:"bumpy et coarse sont proches de rough, pas son contraire.",
+   why_en:"An opposite sits at the other end of the same idea, not just somewhere else.",
+   why_fr:"Un contraire est à l'autre bout de la même idée."},
+  {line:"test it in a sentence", en:"'The stone was rough' becomes 'The stone was smooth'. It flips.",
+   fr:"« The stone was rough » devient « smooth ». Ça bascule.",
+   why_en:"If flipping the word does not flip the meaning, it is not the opposite.",
+   why_fr:"Si changer le mot ne renverse pas le sens, ce n'est pas le contraire."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"The opposite of 'vivid'", ask_fr:"Le contraire de « vivid »", a:"dull"},
+   {ask_en:"The opposite of 'generous'", ask_fr:"Le contraire de « generous »", a:"selfish"},
+   {ask_en:"The opposite of 'temporary'", ask_fr:"Le contraire de « temporary »", a:"permanent"},
+ ]}
+},
+
+"prefix": {
+ story:[
+  {em:"🚫", en:"A prefix goes on the front of a word and changes its meaning. Usually to the opposite.",
+   fr:"Un préfixe se met devant un mot et change son sens."},
+  {em:"🔤", en:"im, in, dis, un, de, mis, re, over. Which one depends on the word, and you mostly know by ear.",
+   fr:"im, in, dis, un, de, mis, re, over. Le choix dépend du mot."}],
+ show:"possible → impossible",
+ steps:[
+  {line:"say it with each one", en:"unpossible sounds wrong. impossible sounds right.",
+   fr:"unpossible sonne faux. impossible sonne juste.",
+   why_en:"Your ear has heard these thousands of times. It is more reliable than a rule here.",
+   why_fr:"Ton oreille les a entendus des milliers de fois. Plus fiable qu'une règle."},
+  {line:"im before m and p", en:"impossible, immature, impatient.",
+   fr:"im devant m et p : impossible, immature, impatient.",
+   why_en:"This one is an actual rule and it holds almost always.",
+   why_fr:"Celle-ci est une vraie règle et elle tient presque toujours."},
+  {line:"keep the whole word", en:"imposible is a spelling mistake, not a prefix mistake.",
+   fr:"imposible est une faute d'orthographe, pas de préfixe.",
+   why_en:"The prefix joins on. Nothing gets removed from the word underneath.",
+   why_fr:"Le préfixe s'ajoute. Rien n'est retiré au mot d'origine."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"Add a prefix to 'correct' to mean not correct", ask_fr:"Préfixe pour « correct »", a:"incorrect"},
+   {ask_en:"Add a prefix to 'appear' to mean stop being seen", ask_fr:"Préfixe pour « appear »", a:"disappear"},
+   {ask_en:"Add a prefix to 'build' to mean build again", ask_fr:"Préfixe pour « build »", a:"rebuild"},
+ ]}
+},
+
+"suffix": {
+ story:[
+  {em:"🔚", en:"A suffix goes on the end. It usually changes what job the word does.",
+   fr:"Un suffixe se met à la fin. Il change souvent le rôle du mot."},
+  {em:"🔄", en:"develop is a verb. development is a noun. Same word, different job.",
+   fr:"develop est un verbe. development est un nom."}],
+ show:"develop → development",
+ steps:[
+  {line:"what job do you need?", en:"-ment and -ness make nouns. -ous and -ful make adjectives. -ly makes adverbs.",
+   fr:"-ment et -ness font des noms. -ous et -ful des adjectifs. -ly des adverbes.",
+   why_en:"Knowing what job you need narrows the choice to one or two straight away.",
+   why_fr:"Savoir le rôle voulu réduit tout de suite le choix."},
+  {line:"the spelling can change", en:"outrage becomes outrageous. beauty becomes beautiful.",
+   fr:"outrage donne outrageous. beauty donne beautiful.",
+   why_en:"y usually turns into i, and a silent e often drops. Those two cover most of it.",
+   why_fr:"Le y devient souvent i, et le e muet tombe souvent."},
+  {line:"check it against a sentence", en:"'the development of the town' works. 'the developness' does not.",
+   fr:"« the development » marche. « the developness » non.",
+   why_en:"If you cannot say it in a sentence, it is not the right suffix.",
+   why_fr:"Si tu ne peux pas le dire dans une phrase, ce n'est pas le bon suffixe."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"Add -ness to 'weak'", ask_fr:"Ajoute -ness à « weak »", a:"weakness"},
+   {ask_en:"Add -less to 'power'", ask_fr:"Ajoute -less à « power »", a:"powerless"},
+   {ask_en:"Add -ous to 'outrage'", ask_fr:"Ajoute -ous à « outrage »", a:"outrageous"},
+ ]}
+},
+
+"standard": {
+ story:[
+  {em:"🗣️", en:"Standard English is the form used in writing and in formal speaking. It is not better English — it is the expected one.",
+   fr:"L'anglais standard est celui de l'écrit et du formel. Ce n'est pas un « meilleur » anglais."},
+  {em:"🎯", en:"We was going. We were going. Both are said out loud every day, but only one is Standard.",
+   fr:"We was / we were : les deux se disent, un seul est standard."}],
+ show:"we was → we were",
+ steps:[
+  {line:"was is for one, were is for more", en:"I was, he was. We were, they were.",
+   fr:"I was, he was. We were, they were.",
+   why_en:"This one rule covers most of the marks in this part of the test.",
+   why_fr:"Cette seule règle couvre l'essentiel de cette partie."},
+  {line:"did, not done", en:"done needs a helper: I have done. On its own it is did.",
+   fr:"done demande un auxiliaire : I have done. Seul, c'est did.",
+   why_en:"Same for seen and saw, been and was. The helper is the deciding thing.",
+   why_fr:"Idem pour seen/saw. L'auxiliaire décide."},
+  {line:"could have, never could of", en:"It sounds like 'of' when spoken quickly. It is never written that way.",
+   fr:"Ça sonne comme « of » à l'oral. Ça ne s'écrit jamais ainsi.",
+   why_en:"It is have, shortened to 've. That is why it sounds like of.",
+   why_fr:"C'est have, réduit à 've. D'où le son."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"we ___ going on a trip (was or were)", ask_fr:"we ___ going (was ou were)", a:"were"},
+   {ask_en:"The musicians ___ a sound check (did or done)", ask_fr:"(did ou done)", a:"did"},
+   {ask_en:"He ___ helped us (could have or could of)", ask_fr:"(could have ou could of)", a:"could have"},
+ ]}
+},
+
+"formal": {
+ story:[
+  {em:"👔", en:"Formal writing is what you use for a letter to a head teacher. Informal is what you use to a friend.",
+   fr:"Le formel s'utilise pour une lettre officielle. L'informel avec un ami."},
+  {em:"🔁", en:"ask becomes request. buy becomes purchase. Same meaning, different clothes.",
+   fr:"ask devient request. buy devient purchase. Même sens, autre habit."}],
+ show:"ask → request",
+ steps:[
+  {line:"who is reading it?", en:"A stranger in a position of authority gets the formal word.",
+   fr:"Un inconnu en position d'autorité reçoit le mot formel.",
+   why_en:"Formality is about the reader, not about the writer being clever.",
+   why_fr:"Le niveau de langue dépend du lecteur, pas de la sophistication de l'auteur."},
+  {line:"formal words are often longer", en:"think about becomes consider. find out becomes discover.",
+   fr:"think about devient consider. find out devient discover.",
+   why_en:"Two-word verbs are usually the informal one. One long word is usually the formal one.",
+   why_fr:"Les verbes en deux mots sont souvent informels."},
+  {line:"do not overdo it", en:"Formal does not mean strange. It still has to sound like English.",
+   fr:"Formel ne veut pas dire bizarre. Ça doit rester de l'anglais.",
+   why_en:"The test offers one word that is too odd on purpose. Leave it.",
+   why_fr:"Le test propose exprès un mot trop étrange. Laisse-le."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"A more formal word for 'buy'", ask_fr:"Un mot plus formel pour « buy »", a:"purchase"},
+   {ask_en:"A more formal word for 'ask'", ask_fr:"Un mot plus formel pour « ask »", a:"request"},
+   {ask_en:"A more formal word for 'find out'", ask_fr:"Un mot plus formel pour « find out »", a:"discover"},
+ ]}
+},
+
+"func": {
+ story:[
+  {em:"4️⃣", en:"Four kinds of sentence: statement, question, command, exclamation. Each has its own job and its own ending.",
+   fr:"Quatre types de phrases : déclarative, interrogative, impérative, exclamative."},
+  {em:"❗", en:"An exclamation must start with What or How and have a verb. 'What a brilliant song this is!' Not just anything with an exclamation mark.",
+   fr:"Une exclamative commence par What ou How et contient un verbe. Pas juste un point d'exclamation."}],
+ show:"the four kinds",
+ steps:[
+  {line:"statements tell you something", en:"'We watched the game together.' Full stop.",
+   fr:"« We watched the game together. » Point.",
+   why_en:"Most sentences are statements. Check the others first and this one is what is left.",
+   why_fr:"La plupart sont déclaratives. Vérifie les autres d'abord."},
+  {line:"commands tell you to do something", en:"'Hold the handrail.' They usually start with the verb.",
+   fr:"« Hold the handrail. » Elles commencent souvent par le verbe.",
+   why_en:"A command has no visible subject — the 'you' is understood.",
+   why_fr:"L'impératif n'a pas de sujet visible — le « you » est sous-entendu."},
+  {line:"exclamations are the strict one", en:"They must begin What or How AND have a verb.",
+   fr:"Elles doivent commencer par What ou How ET avoir un verbe.",
+   why_en:"'What a mess!' is not an exclamation in this test — no verb. This is the marks people lose.",
+   why_fr:"« What a mess ! » n'en est pas une ici — pas de verbe. C'est là qu'on perd des points."},
+ ],
+ guided:{show:"", steps:[
+   {ask_en:"'Watch where you're going' — which kind?", ask_fr:"Quel type ?", a:"command"},
+   {ask_en:"'How I hate tidying my room' — which kind?", ask_fr:"Quel type ?", a:"exclamation"},
+   {ask_en:"'Are you coming tonight' — which kind?", ask_fr:"Quel type ?", a:"question"},
+ ]}
+},
+};
+
+
+/* ---------- the pictures ---------- */
+const ART={};
+/* ---------- what the child reads ---------- */
+const T={
+ title:{en:"One Hundred",fr:"Cent"},
+ sub:{en:"Year 6 SATs English",fr:"Anglais, fin de primaire"},
+ cov1:{en:"Let\u2019s get you ready.",fr:"Pr\u00e9parons-toi."},
+ covname:{en:"One Hundred",fr:"Cent"},
+ covwhy:{en:"A hundred is the score that means you got there.",
+         fr:"Cent, c\u2019est le score qui veut dire que tu y es arriv\u00e9."},
+ cov2:{en:"Grammar, punctuation and spelling \u00b7 ages 9 to 11",
+       fr:"Grammaire, ponctuation, orthographe \u00b7 9 \u00e0 11 ans"},
+ covwho:{en:"For a child sitting the SATs, and the grown-up sitting next to them.",
+         fr:"Pour l\u2019enfant qui passe les tests, et l\u2019adulte \u00e0 c\u00f4t\u00e9."},
+ covwhat:{en:"Every topic here was counted out of the 2024, 2025 and 2026 papers \u2014 150 questions, tagged by the exam board with what they test. There are about 43 things on this paper and they come back every single year.",
+          fr:"Chaque sujet a \u00e9t\u00e9 compt\u00e9 dans les tests 2024, 2025 et 2026 \u2014 150 questions. Il y a environ 43 choses \u00e0 savoir, et elles reviennent chaque ann\u00e9e."},
+ covhow:{en:"Each topic is taught before it is practised: a video, the method written out, then practice.",
+          fr:"Chaque sujet est enseign\u00e9 avant d\u2019\u00eatre travaill\u00e9 : une vid\u00e9o, la m\u00e9thode \u00e9crite, puis l\u2019entra\u00eenement."},
+ covfr:{en:"In English or French \u2014 change it any time at the top.",
+        fr:"En anglais ou en fran\u00e7ais \u2014 changez \u00e0 tout moment en haut."},
+ covgo:{en:"Find what to work on",fr:"Trouver quoi travailler"},
+ covbrowse:{en:"Or look through the topics",fr:"Ou parcourir les sujets"},
+ covmore:{en:"How this course was built",fr:"Comment ce cours a \u00e9t\u00e9 construit"},
+ hello:{en:"Hello.",fr:"Bonjour."},
+ whoare:{en:"What shall I call you?",fr:"Comment je t\u2019appelle ?"},
+ namego:{en:"That\u2019s me",fr:"C\u2019est moi"},
+ namewhy:{en:"Just so I can say hello properly. It stays on this phone.",
+          fr:"Juste pour te dire bonjour comme il faut. \u00c7a reste sur ce t\u00e9l\u00e9phone."},
+ skipname:{en:"Skip",fr:"Passer"},
+ hi:{en:"Hello",fr:"Salut"}, wb:{en:"Good to see you again",fr:"Content de te revoir"},
+ inside:{en:"What\u2019s in here",fr:"Ce qu\u2019il y a dedans"},
+ nsub:{en:"things to learn",fr:"choses \u00e0 apprendre"},
+ nq:{en:"questions to try",fr:"questions \u00e0 essayer"},
+ nvid:{en:"short videos",fr:"vid\u00e9os courtes"},
+ sofar:{en:"right so far",fr:"bonnes jusqu\u2019ici"},
+ got:{en:"answers right so far",fr:"bonnes r\u00e9ponses jusqu\u2019ici"},
+ topics:{en:"What shall we work on?",fr:"Sur quoi travaille-t-on ?"},
+ subtopics:{en:"subtopics",fr:"sous-sujets"},
+ of:{en:"of",fr:"sur"}, done:{en:"done",fr:"faits"},
+ paper:{en:"The whole paper",fr:"Le test complet"},
+ papersub:{en:"50 questions \u00b7 45 minutes \u00b7 the real format",fr:"50 questions \u00b7 45 minutes \u00b7 le vrai format"},
+ about:{en:"About this course",fr:"\u00c0 propos du cours"},
+ carry:{en:"Carry on where you stopped",fr:"Reprendre o\u00f9 tu t\u2019es arr\u00eat\u00e9"},
+ vidwatch:{en:"Watch the explainer",fr:"Voir l\u2019explication"},
+ vidsoon:{en:"Video coming soon",fr:"Vid\u00e9o bient\u00f4t disponible"},
+ vidmain:{en:"Watch this first",fr:"Regarde \u00e7a d\u2019abord"},
+ vidjump:{en:"Jump to a step",fr:"Aller \u00e0 une \u00e9tape"},
+ vidagain:{en:"Stuck? Watch the explainer again",fr:"Bloqu\u00e9 ? Revois l\u2019explication"},
+ vidlen:{en:"about a minute",fr:"une minute environ"},
+ method:{en:"Quick reminder",fr:"Pense-b\u00eate"},
+ methodsub:{en:"The steps on their own \u2014 for checking mid-question, not for learning from.",
+            fr:"Les \u00e9tapes seules \u2014 pour v\u00e9rifier, pas pour apprendre."},
+ nofilm:{en:"No video for this one yet, so the full explanation is written out below.",
+         fr:"Pas encore de vid\u00e9o ici, donc l\u2019explication compl\u00e8te est ci-dessous."},
+ why:{en:"why",fr:"pourquoi"},
+ practise:{en:"Practise this",fr:"S\u2019entra\u00eener"},
+ iknow:{en:"I know this \u2014 let me practise",fr:"Je sais faire \u2014 laisse-moi m\u2019entra\u00eener"},
+ showme:{en:"Show me how again",fr:"Remontre-moi comment"},
+ next:{en:"Next",fr:"Suivant"}, back:{en:"Back to the topics",fr:"Retour aux sujets"},
+ again:{en:"Try again",fr:"R\u00e9essayer"}, camp:{en:"Finished",fr:"Termin\u00e9"},
+ finish:{en:"Finish",fr:"Terminer"}, score:{en:"marks",fr:"points"},
+ look:{en:"Look again",fr:"Regarde encore"},
+ dgtitle:{en:"Ten questions",fr:"Dix questions"},
+ dgsub:{en:"One from each of the biggest topics. Skip what you do not know.",
+        fr:"Une par grand sujet. Passe ce que tu ne sais pas."},
+ dgskip:{en:"I don\u2019t know this one",fr:"Je ne sais pas"},
+ dgdone:{en:"Here is what to work on",fr:"Voici quoi travailler"},
+ dgsub2:{en:"Start at the top. The first one comes up the most.",
+         fr:"Commence par le premier. C\u2019est celui qui revient le plus."},
+ dggo:{en:"Check what I can do",fr:"V\u00e9rifier ce que je sais"},
+ strong:{en:"You had these",fr:"Tu avais celles-ci"},
+ marks:{en:"comes up a lot",fr:"revient souvent"},
+ tapall:{en:"Tap every one",fr:"Touche-les tous"},
+ tapgap:{en:"Tap where it goes",fr:"Touche l\u2019endroit"},
+ listen:{en:"Hear the word",fr:"\u00c9couter le mot"},
+ check:{en:"Check",fr:"V\u00e9rifier"},
+};
+/* ================= the shell =================
+   Lifted from the maths app on purpose: same cover, same name prompt, same
+   tiles, same subtopic page, same phases, same paper. Two courses that feel
+   like one product is the point. */
+let L=localStorage.getItem("oh-en.lang")||"en";
+const t=k=>(T[k]||{})[L]||(T[k]||{}).en||k;
+const w=(o,k)=>o[k+"_"+L]!==undefined?o[k+"_"+L]:o[k+"_en"];
+const KEY="oh-en.v1";
+let S=(()=>{try{return JSON.parse(localStorage.getItem(KEY))||{d:{},b:{},p:[]}}catch(e){return{d:{},b:{},p:[]}}})();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const ALL=[]; CAMPS.forEach((c,ci)=>c.stops.forEach((s,si)=>ALL.push(Object.assign({},s,{id:c.id+"."+si,camp:ci}))));
+const BANDS=["#5B6BAE","#5E63A6","#63619C","#6A5F92","#725C88"];
+const esc=s=>(s===undefined||s===null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const norm=x=>String(x).replace(/\s+/g," ").trim().toLowerCase().replace(/[.!?]$/,"").replace(/\u2019/g,"'");
+const byId=id=>ALL.filter(s=>s.id===id)[0];
+const VIDEO={};
+const mmss=n=>Math.floor(n/60)+":"+String(n%60).padStart(2,"0");
+let lastTopic;
+let V={s:"cover"};
+function setLang(x){L=x;localStorage.setItem("oh-en.lang",x);render()}
+function render(){
+ const done=Object.keys(S.d).length;
+ document.documentElement.style.setProperty("--band",BANDS[Math.min(4,Math.floor(done/8))]);
+ lEN.className=L==="en"?"on":""; lFR.className=L==="fr"?"on":"";
+ hT.textContent=t("title"); hS.textContent=t("sub");
+ bar.style.width=Math.round(done/ALL.length*100)+"%";
+ back.hidden=(V.s==="cover"||V.s==="shelf");
+ back.onclick=(V.s==="stop"&&V.topicFrom!==undefined)?function(){openTopic(V.topicFrom)}:goMap;
+ app.innerHTML = V.s==="cover"?coverHTML():V.s==="diag"?diagHTML()
+  :V.s==="shelf"?homeHTML():V.s==="topic"?topicHTML()
+  :V.s==="stop"?stopHTML():paperHTML();
+ if(V.s!=="paper") main.scrollTop=0;
+}
+/* ---------- cover ---------- */
+function coverArt(){
+ const bits=[["A","var(--band)",20,26,-8],[";","var(--sun)",62,16,0],["\u2019","var(--band)",96,12,6],
+  ["?","var(--scree)",128,28,-5],["!","var(--sun)",172,18,7],["W","var(--band)",204,26,0]];
+ return `<svg class="covart" viewBox="0 0 260 62" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  ${bits.map(([ch,c,x,y,r])=>`<text x="${x}" y="${y+26}" font-size="30" font-weight="600" fill="${c}"
+    opacity=".9" transform="rotate(${r} ${x} ${y+26})">${ch}</text>`).join("")}</svg>`;
+}
+function coverHTML(){
+ if(!S.name && !S.noname && !V.more) return nameHTML();
+ const got=Object.keys(S.b||{}).reduce((a,k)=>a+(S.b[k]||0),0);
+ const seen=Object.keys(S.d||{}).length>0;
+ return `<div class="wrap cover">
+  ${coverArt()}
+  ${S.name?"":`<p class="brand">${esc(t("covname"))}</p>`}
+  <h1 class="covh">${S.name?`${esc(t(seen?"wb":"hi"))}, ${esc(S.name)}.`:esc(t("cov1"))}</h1>
+  <p class="covsub">${esc(t("cov2"))}</p>
+  ${S.name?"":`<p class="covwhy">${esc(t("covwhy"))}</p>`}
+  ${got?`<p class="covgot"><b class="num">${got}</b> ${esc(t("sofar"))}</p>`:""}
+  <button class="go2" onclick="startDiag()">${esc(t("covgo"))}</button>
+  <button class="go2 quiet" onclick="goShelf()">${esc(t("covbrowse"))}</button>
+  <h2 class="insideh">${esc(t("inside"))}</h2>
+  <div class="inside">
+   <span class="ic"><b class="num">${ALL.length}</b>${esc(t("nsub"))}</span>
+   <span class="ic"><b class="num">${ALL.reduce((a,s)=>a+s.n,0)}</b>${esc(t("nq"))}</span>
+   <span class="ic"><b class="num">${Object.keys(TEACH).length}</b>${esc(t("nvid"))}</span>
+  </div>
+  <div class="peek">${CAMPS.map(c=>`<span class="pk">${c.em}</span>`).join("")}</div>
+  ${V.more?`<div class="card covcard">
+    <p class="covwho">${esc(t("covwho"))}</p><p class="covp">${esc(t("covwhat"))}</p>
+    <p class="covp">${esc(t("covhow"))}</p><p class="covsm">${esc(t("covfr"))}</p></div>`
+   :`<button class="covmore" onclick="showMore()">${esc(t("covmore"))}</button>`}
+  </div>`;
+}
+function showMore(){V.more=1;render()}
+function nameHTML(){
+ return `<div class="wrap cover">${coverArt()}
+  <h1 class="covh">${esc(t("hello"))}</h1>
+  <p class="covlead">${esc(t("whoare"))}</p>
+  <input class="nameinput" id="nm" type="text" maxlength="18" value="${esc(V.nm||"")}"
+   oninput="V.nm=this.value" placeholder="\u2026">
+  <button class="go2" onclick="setName()">${esc(t("namego"))}</button>
+  <p class="covsm">${esc(t("namewhy"))}</p>
+  <button class="covmore" onclick="noName()">${esc(t("skipname"))}</button></div>`;
+}
+function setName(){
+ const el=document.getElementById("nm");
+ const v=((el&&el.value)||V.nm||"").trim().slice(0,18);
+ if(!v){noName();return}
+ S.name=v; save(); V={s:"cover"}; render();
+}
+function noName(){S.noname=1;save();V={s:"cover"};render()}
+function goCover(){V={s:"cover"};render()}
+/* ---------- diagnostic ---------- */
+const DIAG=[
+ {g:"spell",en:"Spelling",fr:"Orthographe",hot:20},
+ {g:"punct",en:"Commas and brackets",fr:"Virgules et parenth\u00e8ses",hot:14},
+ {g:"wordClass",en:"Word classes",fr:"Classes de mots",hot:13},
+ {g:"apostrophe",en:"Apostrophes",fr:"Apostrophes",hot:12},
+ {g:"syn",en:"Synonyms",fr:"Synonymes",hot:11},
+ {g:"clause",en:"Clauses",fr:"Propositions",hot:10},
+ {g:"voice",en:"Active and passive",fr:"Actif et passif",hot:9},
+ {g:"tense",en:"Tense",fr:"Les temps",hot:8},
+ {g:"func",en:"Kinds of sentence",fr:"Types de phrases",hot:7},
+ {g:"standard",en:"Standard English",fr:"Anglais standard",hot:6}];
+function startDiag(){
+ S.seen=1;save();
+ const seed=Date.now()%99991;
+ V={s:"diag",i:0,typed:"",res:[],qs:DIAG.map((d,k)=>GEN[d.g](R(seed+k*7919),1))};
+ render();
+}
+function diagHTML(){
+ if(V.i>=DIAG.length) return diagResult();
+ const q=V.qs[V.i];
+ return `<div class="wrap">
+  <div class="mhead"><h1>${esc(t("dgtitle"))}</h1><p>${esc(t("dgsub"))}</p></div>
+  <div class="dgbar">
+   <button class="dgback" onclick="diagBack()" ${V.i===0?"disabled":""}>\u2039</button>
+   <div class="dgdots">${DIAG.map((_,k)=>`<i class="${V.res[k]===undefined?"":"on"}${k===V.i?" now":""}"></i>`).join("")}</div>
+   <span class="dgn num">${V.i+1}/${DIAG.length}</span></div>
+  <div class="card">${qBody(q,true)}</div>
+  <button class="go2 quiet" onclick="diagSkip()">${esc(t("dgskip"))}</button></div>`;
+}
+function diagCheck(ok){ V.res[V.i]=ok; V.typed=""; V.pick=null; V.i++; render(); }
+function diagSkip(){ V.res[V.i]=false; V.typed=""; V.pick=null; V.i++; render(); }
+function diagBack(){ if(V.i>0){V.i--;V.typed="";V.pick=null} render(); }
+function diagResult(){
+ const weak=DIAG.map((d,k)=>({d,ok:V.res[k]===true})).filter(x=>!x.ok).sort((a,b)=>b.d.hot-a.d.hot);
+ const strong=DIAG.filter((d,k)=>V.res[k]===true);
+ S.weak=weak.map(x=>x.d.g); save();
+ return `<div class="wrap"><div class="mhead"><h1>${esc(t("dgdone"))}</h1><p>${esc(t("dgsub2"))}</p></div>
+  ${weak.map(x=>{const st=ALL.filter(s=>s.g===x.d.g)[0];
+   return `<button class="wcard" onclick="openStop('${st?st.id:ALL[0].id}')">
+    <span class="wm">\u25b6</span><span class="wx"><b>${esc(x.d[L]||x.d.en)}</b>
+    <small>${esc(t("marks"))}</small></span><span class="wa">\u203a</span></button>`}).join("")}
+  ${strong.length?`<p class="shelfh">${esc(t("strong"))}</p>
+   <p class="strong">${strong.map(d=>esc(d[L]||d.en)).join(" \u00b7 ")}</p>`:""}
+  <button class="go2 quiet" onclick="goShelf()">${esc(t("covbrowse"))}</button></div>`;
+}
+/* ---------- home and topics ---------- */
+function goShelf(){S.seen=1;save();V={s:"shelf"};render()}
+function goMap(){V={s:"shelf"};render()}
+function homeHTML(){
+ const done=Object.keys(S.d).length;
+ const got=Object.keys(S.b||{}).reduce((a,k)=>a+(S.b[k]||0),0);
+ let h=`<div class="wrap"><div class="mhead">
+  ${S.name?`<p class="greet">${esc(t("hi"))}, ${esc(S.name)}</p>`:""}
+  <h1>${esc(t("topics"))}</h1>
+  <p class="alt num">${done} ${esc(t("of"))} ${ALL.length} ${esc(t("done"))}</p>
+  ${got?`<p class="gotline num"><b>${got}</b> ${esc(t("got"))}</p>`:""}</div>`;
+ if(S.at && !S.d[S.at.id]){
+  const st=byId(S.at.id);
+  if(st) h+=`<button class="wcard next" onclick="resume()"><span class="wm">\u21ba</span>
+   <span class="wx"><b>${esc(st[L]||st.en)}</b><small>${esc(t("carry"))}</small></span>
+   <span class="wa">\u203a</span></button>`;
+ }
+ h+=`<div class="tiles">`;
+ CAMPS.forEach((c,ci)=>{
+  const mine=ALL.filter(s=>s.camp===ci), dn=mine.filter(s=>S.d[s.id]).length;
+  h+=`<button class="tile" onclick="openTopic(${ci})">
+   <span class="tem">${c.em}</span><span class="tname">${esc(c[L]||c.en)}</span>
+   <span class="tsub">${mine.length} ${esc(t("subtopics"))}</span>
+   <span class="tbar"><i style="width:${Math.round(dn/mine.length*100)}%"></i></span>
+   <span class="tnum num">${dn}/${mine.length}</span></button>`;
+ });
+ return h+`</div>
+  <button class="paperbtn" onclick="openPaper()"><span style="font-size:26px">\u23f1\ufe0f</span>
+   <span><b>${esc(t("paper"))}</b><span>${esc(t("papersub"))}</span></span></button>
+  <button class="go2 quiet" onclick="goCover()">${esc(t("about"))}</button></div>`;
+}
+function openTopic(ci){lastTopic=ci;V={s:"topic",ci};render()}
+function topicHTML(){
+ const c=CAMPS[V.ci], mine=ALL.filter(s=>s.camp===V.ci);
+ let h=`<div class="wrap"><div class="mhead"><h1>${c.em} ${esc(c[L]||c.en)}</h1>
+  <p>${esc(c["sub_"+L]||c.sub_en)}</p></div><div class="sublist">`;
+ mine.forEach(s=>{
+  h+=`<button class="subrow${S.d[s.id]?" done":""}" onclick="openStop('${s.id}')">
+   <span class="srm">${S.d[s.id]?"\u2713":"\u25b6"}</span>
+   <span class="srx"><b>${esc(s[L]||s.en)}</b><small>${esc(s["sub_"+L]||"")}</small></span>
+   ${S.d[s.id]?`<span class="srs num">${S.b[s.id]||0}/${s.n}</span>`:""}</button>`;
+ });
+ return h+`</div></div>`;
+}
+/* ---------- a subtopic ---------- */
+function openStop(id){
+ const s=byId(id);
+ V={s:"stop",id,ph:"lesson",i:0,g:0,typed:"",pick:null,bad:0,miss:0,why:{},topicFrom:lastTopic};
+ S.at={id,ph:"lesson",i:0}; save(); render();
+}
+function newQ(){const s=byId(V.id);V.q=GEN[s.g](R(Date.now()%99991+V.i*7919),s.lvl||1,s.arg);V.typed="";V.pick=null;V.miss=0}
+function stopHTML(){
+ const s=byId(V.id), T2=TEACH[s.g];
+ if(V.ph==="lesson") return lessonHTML(s,T2);
+ if(V.ph==="guided") return guidedHTML(s,T2);
+ if(V.ph==="done") return doneHTML(s);
+ return drillHTML(s,T2);
+}
+function lessonHTML(s,T2){
+ const src=(VIDEO[s.g]||{})[L];
+ const marks=T2.steps.map((st,i)=>st.at!==undefined?st.at:Math.round(8+i*11));
+ return `<div class="wrap"><p class="step">${esc(s[L]||s.en)}</p>
+  <h2 class="lh first">${esc(t("vidmain"))}</h2>
+  <div class="vidbox">${src
+   ?`<video class="vid" id="theVid" controls playsinline preload="metadata" src="${esc(src)}"></video>`
+   :`<div class="vidph"><span class="vidplay">\u25b6</span><span class="vidt">
+     <b>${esc(t("vidwatch"))}</b><small>${esc(t("vidsoon"))} \u00b7 ${esc(s.g)}-${L}.mp4 \u00b7 ${esc(t("vidlen"))}</small>
+     </span></div>`}</div>
+  <p class="jumph">${esc(t("vidjump"))}</p>
+  <div class="jumps">${T2.steps.map((st,i)=>`<button class="jump" onclick="seekTo(${marks[i]})">
+   <span class="jt num">${mmss(marks[i])}</span><span class="jx">${esc(st[L]||st.en)}</span></button>`).join("")}</div>
+  <h2 class="lh">${esc(t("method"))}</h2>
+  <p class="lhsub">${esc(t("methodsub"))}</p>
+  <div class="card recall">${T2.show?`<div class="qmid">${esc(T2.show)}</div>`:""}
+   <ol class="rsteps">${T2.steps.map(st=>`<li>${esc(st.line)}</li>`).join("")}</ol></div>
+  ${src?"":`<h2 class="lh">${esc(t("why"))}?</h2>
+   <p class="fallback">${esc(t("nofilm"))}</p>
+   ${T2.story.map(c=>`<div class="card story"><div class="storyem">${c.em}</div>
+     <p class="storyline">${esc(c[L]||c.en)}</p></div>`).join("")}
+   <div class="card lesson"><div class="steps">${T2.steps.map((st,i)=>`<div class="stepline">
+     <b>${esc(st.line)}</b><span>${esc(st[L]||st.en)}</span>
+     ${(V.why||{})[i]?`<i>${esc(w(st,"why"))}</i>`
+      :`<button class="whybtn" onclick="showWhy(${i})">${esc(t("why"))}?</button>`}
+    </div>`).join("")}</div></div>`}
+  <button class="go2" onclick="toGuided()">${esc(t("practise"))}</button>
+  <button class="go2 quiet" onclick="skipTeach()">${esc(t("iknow"))}</button></div>`;
+}
+function seekTo(sec){const v=document.getElementById("theVid");if(v){try{v.currentTime=sec;v.play()}catch(e){}}}
+function showWhy(i){if(!V.why)V.why={};V.why[i]=1;render()}
+function skipTeach(){V.ph="drill";V.i=0;V.bad=0;newQ();S.at={id:V.id,ph:"drill",i:0};save();render()}
+function toGuided(){
+ if(V.resumeAt!==undefined){const at=V.resumeAt;V.resumeAt=undefined;
+  V.ph="drill";V.i=at;V.bad=0;newQ();S.at={id:V.id,ph:"drill",i:at};save();render();return}
+ V.ph="guided";V.g=0;V.typed="";V.miss=0;S.at={id:V.id,ph:"guided",i:0};save();render();
+}
+function backToLesson(){V.resumeAt=V.i;V.ph="lesson";V.why={};render()}
+function guidedHTML(s,T2){
+ const steps=T2.guided.steps, q=steps[Math.min(V.g,steps.length-1)];
+ return `<div class="wrap"><p class="step">${esc(s[L]||s.en)}</p>${phaseBar(1)}
+  <div class="card">
+   <div class="steps">${steps.slice(0,V.g).map(x=>
+    `<div class="stepline done"><b>${esc(x.a)}</b><span>${esc(w(x,"ask"))}</span></div>`).join("")}</div>
+   <p class="qq">${esc(w(q,"ask"))}</p>
+   <input class="wordin" id="win" type="text" value="${esc(V.typed)}" oninput="V.typed=this.value"
+    placeholder="\u2026" autocapitalize="none" autocorrect="off" spellcheck="false">
+   <button class="go2" onclick="checkGuided()">${esc(t("check"))}</button>
+   ${V.miss>=2?`<div class="note">${esc(t("look"))} \u2014 ${esc(w(T2.steps[Math.min(V.g,2)],"why"))}</div>`:""}
+  </div></div>`;
+}
+function checkGuided(){
+ const el=document.getElementById("win"); if(el) V.typed=el.value;
+ const T2=TEACH[byId(V.id).g], steps=T2.guided.steps;
+ if(!V.typed.trim()) return;
+ if(norm(V.typed)===norm(steps[Math.min(V.g,steps.length-1)].a)){
+  V.g++; V.typed=""; V.miss=0;
+  if(V.g>=steps.length){V.ph="drill";V.i=0;V.bad=0;newQ();S.at={id:V.id,ph:"drill",i:0};save()}
+ } else { V.miss++; V.typed=""; }
+ render();
+}
+function phaseBar(n){
+ const ks=[{en:"Learn it",fr:"Apprendre"},{en:"Together",fr:"Ensemble"},{en:"On your own",fr:"\u00c0 toi"}];
+ return `<div class="phases">${ks.map((k,i)=>
+  `<span class="pz${i===n?" on":""}${i<n?" past":""}">${esc(k[L]||k.en)}</span>`).join("")}</div>`;
+}
+/* ---------- the question surfaces ---------- */
+function qBody(q,isDiag){
+ const done=isDiag?"diagCheck":"answer";
+ if(q.ask==="tapWords"){
+  const parts=q.sent.split("|");
+  const picked=V.pick||[];
+  return `<p class="hint">${esc(q.hint)}</p><p class="sent">${parts.map((p,i)=>
+   i%2===1?`<button class="tw${picked.includes(p)?(q.a.includes(p)?" on":" bad"):""}"
+    onclick="tapWord('${p.replace(/'/g,"\\'")}','${done}')">${esc(p)}</button>`:esc(p)).join("")}</p>`;
+ }
+ if(q.ask==="tapGaps"){
+  const parts=q.sent.split("|");
+  const picked=V.pick||[];
+  return `<p class="hint">${esc(q.hint)}</p><p class="sent">${parts.map((p,i)=>
+   i%2===1?`<button class="gap${picked.includes(i)?" on":""}" onclick="tapGap(${i},'${done}')"></button>`
+    :esc(p)).join("")}</p>`;
+ }
+ if(q.ask==="choose"){
+  return `${q.sent?`<p class="sent">${esc(q.sent)}</p>`:""}
+   <p class="qq">${q.q}</p>
+   <div class="opts">${q.opts.map(o=>`<button class="opt${V.pick===o?(o===q.a?" yes":" no"):""}"
+    onclick="tapOpt('${String(o).replace(/'/g,"\\'")}','${done}')">${esc(o)}</button>`).join("")}</div>`;
+ }
+ /* type */
+ return `${q.sent?`<p class="sent">${esc(q.sent)}</p>`:""}
+  <p class="qq">${q.q}</p>
+  ${q.clip?`<button class="listen"><span>\u{1f50a}</span>${esc(t("listen"))}</button>`:""}
+  <input class="wordin" id="win" type="text" value="${esc(V.typed)}" oninput="V.typed=this.value"
+   placeholder="\u2026" autocapitalize="none" autocorrect="off" spellcheck="false">
+  <button class="go2" onclick="typeCheck('${done}')">${esc(t("check"))}</button>
+  ${q.hint?`<p class="covsm">${esc(q.hint)}</p>`:""}`;
+}
+function tapWord(word,done){
+ const q=V.q||V.qs[V.i]; if(!V.pick)V.pick=[];
+ if(!V.pick.includes(word))V.pick.push(word);
+ const need=q.a;
+ if(need.every(x=>V.pick.includes(x))){
+  const clean=!V.pick.some(x=>!need.includes(x));
+  finish(clean,done);
+ } else if(V.pick.some(x=>!need.includes(x))){ V.miss=(V.miss||0)+1; markWrong(done); }
+ render();
+}
+function tapGap(i,done){
+ const q=V.q||V.qs[V.i]; if(!V.pick)V.pick=[];
+ if(!V.pick.includes(i))V.pick.push(i);
+ if(V.pick.length>=q.a) finish(true,done);
+ render();
+}
+function tapOpt(o,done){
+ const q=V.q||V.qs[V.i];
+ V.pick=o;
+ finish(String(o)===String(q.a),done);
+ render();
+}
+function typeCheck(done){
+ const el=document.getElementById("win"); if(el) V.typed=el.value;
+ if(!V.typed.trim()) return;
+ const q=V.q||V.qs[V.i];
+ finish(norm(V.typed)===norm(q.a),done);
+ render();
+}
+function markWrong(done){ if(done==="answer"){V.bad=(V.bad||0)+1} }
+function finish(ok,done){
+ if(done==="diagCheck"){ diagCheck(ok); return; }
+ if(ok){ advance(); } else { V.bad=(V.bad||0)+1; V.miss=(V.miss||0)+1; V.typed=""; V.pick=null; }
+}
+function drillHTML(s,T2){
+ const q=V.q, dots=Array.from({length:s.n}).map((_,k)=>`<i class="${k<V.i?"on":""}"></i>`).join("");
+ return `<div class="wrap"><p class="step">${esc(s[L]||s.en)} \u00b7 ${V.i+1} ${esc(t("of"))} ${s.n}</p>
+  ${phaseBar(2)}
+  <div class="card">${qBody(q,false)}
+   ${V.miss>=2?`<div class="note">${esc(t("look"))} \u2014 ${esc(w(T2.steps[0],"why"))}</div>`:""}
+   <div class="tally">${dots}</div></div>
+  ${V.bad>=3?`<button class="go2 warm small" onclick="backToLesson()">\u25b6 ${esc(t("vidagain"))}</button>`:""}
+  </div>`;
+}
+function advance(){
+ const s=byId(V.id); V.i++; V.typed=""; V.pick=null; V.miss=0;
+ S.at={id:V.id,ph:"drill",i:V.i}; save();
+ if(V.i>=s.n){ S.d[s.id]=1; S.b[s.id]=Math.max(S.b[s.id]||0,Math.max(0,s.n-V.bad)); save(); V.ph="done"; }
+ else newQ();
+}
+function doneHTML(s){
+ return `<div class="wrap"><div class="card res"><div class="em">\u2713</div>
+  <h2>${esc(t("camp"))}</h2><p class="num">${S.b[s.id]||0} ${esc(t("of"))} ${s.n}</p></div>
+  <button class="go2" onclick="goMap()">${esc(t("back"))}</button>
+  <button class="go2 quiet" onclick="openStop('${V.id}')">${esc(t("again"))}</button></div>`;
+}
+function resume(){
+ const a=S.at; if(!a)return; const s=byId(a.id); if(!s)return;
+ openStop(a.id);
+ if(a.ph==="drill"){V.ph="drill";V.i=Math.min(a.i,s.n-1);V.bad=0;newQ()}
+ else if(a.ph==="guided") toGuided();
+ render();
+}
+/* ---------- the whole paper: 50 questions, 45 minutes ---------- */
+const PAPERMIX=["punct","wordClass","apostrophe","syn","clause","func","standard","tense",
+ "voice","prefix","suffix","contract","wcName","modal","ant","formal","punct","wordClass","spell","spell"];
+let TID=null;
+function openPaper(){
+ const seed=Date.now()%99991, qs=[];
+ for(let i=0;i<50;i++){ const g=PAPERMIX[i%PAPERMIX.length];
+  qs.push(Object.assign(GEN[g](R(seed+i*7919),1),{m:1})); }
+ V={s:"paper",qs,i:0,ans:qs.map(()=>null),t0:Date.now(),mark:null,typed:"",pick:null};
+ tick(); render();
+}
+function tick(){ clearInterval(TID); TID=setInterval(()=>{
+ if(V.s!=="paper"||V.mark){clearInterval(TID);return}
+ const left=2700-Math.floor((Date.now()-V.t0)/1000);
+ if(left<=0){clearInterval(TID);markPaper();return}
+ const e=document.getElementById("clk");
+ if(e){e.textContent=mmss(left); e.className="timer"+(left<300?" low":"")}
+},500) }
+function paperHTML(){
+ if(V.mark!==null){
+  return `<div class="wrap"><div class="card res"><div class="em">\u{1f4c4}</div>
+   <h2 class="num">${V.mark} / 50</h2><p>${esc(t("score"))}</p>
+   <div class="bar2"><i style="width:${Math.round(V.mark/50*100)}%"></i></div></div>
+   <button class="go2" onclick="goMap()">${esc(t("back"))}</button>
+   <button class="go2 quiet" onclick="openPaper()">${esc(t("again"))}</button></div>`;
+ }
+ const q=V.qs[V.i];
+ return `<div class="wrap">
+  <div class="step" style="display:flex;justify-content:space-between;align-items:center">
+   <span>${V.i+1} ${esc(t("of"))} 50</span><span class="timer" id="clk">45:00</span></div>
+  <div class="card">${qBody(q,false).replace(/'answer'/g,"'paper'")}
+   <div class="pgrid">${V.qs.map((_,k)=>`<button class="pg${V.ans[k]!==null?" ans":""}${k===V.i?" now":""}"
+    onclick="pgo(${k})">${k+1}</button>`).join("")}</div></div>
+  <button class="go2 quiet" onclick="markPaper()">${esc(t("finish"))}</button></div>`;
+}
+function pgo(k){V.i=k;V.typed="";V.pick=null;render()}
+function markPaper(){
+ let m=0; V.ans.forEach(a=>{if(a===true)m++});
+ V.mark=m; S.p=(S.p||[]).concat([m]); save(); render();
+}
+/* in the paper, an answer is recorded and it moves on \u2014 no marking as you go */
+const _finish=finish;
+finish=function(ok,done){
+ if(done==="paper"){ V.ans[V.i]=ok; V.typed=""; V.pick=null;
+  if(V.i<49) V.i++; render(); return; }
+ _finish(ok,done);
+};
+render();
+
+
+</script></body></html>
